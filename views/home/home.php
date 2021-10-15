@@ -21,6 +21,7 @@
             justify-content: right;
         }
         nav>a {
+            margin-top: 0.4em;
             margin-left: 1em;
         }
     </style>
@@ -29,10 +30,34 @@
         <a href="?page=accounts&action=connect" class="btn btn-large">Se connecter</a>
     </nav>
     <header class="container grey">
-        <h1>Coucou</h1>
+        <h1>Bienvenue !</h1>
     </header>
     <main>
-
+    <div class="row">
+        <style>
+            img {
+                display: flex;
+                justify-content: space-around;
+                width: 615px;
+                height: 407px;
+            }
+        </style>
+    <div class="col s4">
+        <a href="?page=vehicle&action=afficher_description&id=0">
+            <img src="https://www.publicdomainpictures.net/pictures/100000/nahled/classic-car-1404217966lQK.jpg">
+        </a>
+    </div>
+    <div class="col s4">
+        <a href="?page=vehicle&action=afficher_description&id=1">
+            <img src="https://www.publicdomainpictures.net/pictures/100000/nahled/classic-car-1404217966lQK.jpg">
+        </a>
+    </div>
+    <div class="col s4">
+        <a href="?page=vehicle&action=afficher_description&id=2">
+            <img src="https://www.publicdomainpictures.net/pictures/100000/nahled/classic-car-1404217966lQK.jpg">
+        </a>
+    </div>
+    </div>
     </main>
     <footer>
 
