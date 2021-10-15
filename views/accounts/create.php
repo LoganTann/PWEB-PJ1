@@ -7,16 +7,16 @@
 </head>
 <body>
     
-    <div class="row">
-        <div class="col s12">
-            This is an inline input field:
-            <div class="input-field inline">
-            <input id="email_inline" type="email" class="validate">
-            <label for="email_inline">Email</label>
-            <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
-            </div>
-        </div>
+<form action="/ma-page-de-traitement" method="post">
+    <div>
+        <label for="name">Nom :</label>
+        <input type="text" id="name" name="user_name">
     </div>
+    <div>
+        <label for="mail">e-mail :</label>
+        <input type="email" id="mail" name="user_mail">
+    </div>
+</form>
 
 </body>
 </html>

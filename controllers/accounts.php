@@ -1,15 +1,15 @@
 <?php
 function create() {
     $errors = false;
-	$user_info = array(
-		"nom" => $_POST["nom"],
-		"pseudo" => $_POST["pseudo"],
-		"mdp" => $_POST["mdp"],
-		"email" => $_POST["email"],
-        "nomE" => $_POST["nomE"],
-        "adresseE" => $_POST["adresseE"]
-	);
 	if (count($_POST) > 0) {
+        $user_info = array(
+            "nom" => $_POST["nom"],
+            "pseudo" => $_POST["pseudo"],
+            "mdp" => $_POST["mdp"],
+            "email" => $_POST["email"],
+            "nomE" => $_POST["nomE"],
+            "adresseE" => $_POST["adresseE"]
+        );
 		require ("./model/clientBD.php");
 		$errors = valid_registration($user_info);
 		if (count($errors) <= 0 && ($id_user = new_user($user_info)) >= 0) {
