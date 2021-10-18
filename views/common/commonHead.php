@@ -29,14 +29,11 @@
         <a href="?page=accounts&action=connect" class="btn btn-large">Se connecter</a>
     </nav>
     <header class="container">
+        <h1>Bienvenue !</h1>
+
+
         <h3>Référence de l'API : </h3>
         <p style="font-family: monospace;">/index.php<b>?page=</b>nomDuControlleur<b>&action=</b>nomDeFonction</p>
     </header>
     <main>
-
-    </main>
-    <footer>
-
-    </footer>
-</body>
-</html>
+        <!-- END common Head -->

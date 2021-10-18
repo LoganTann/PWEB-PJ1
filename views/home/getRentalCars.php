@@ -29,10 +29,24 @@
         <a href="?page=accounts&action=connect" class="btn btn-large">Se connecter</a>
     </nav>
     <header class="container">
+        <h1>Bienvenue !</h1>
+
+
         <h3>Référence de l'API : </h3>
         <p style="font-family: monospace;">/index.php<b>?page=</b>nomDuControlleur<b>&action=</b>nomDeFonction</p>
     </header>
     <main>
+        <?php
+        if($Cars != false){
+            echo("<h2>Liste des voitures en cours de location : </h2>");
+            echo("<ul>");
+            foreach($Cars as $car){
+                echo("<li>". $car['type'] ." Prix : " . $car['prix'] . "€ </li>");
+            }
+            echo("</ul>");
+        }else echo ('pas de voitures en cours de location');
+
+        ?>
 
     </main>
     <footer>
