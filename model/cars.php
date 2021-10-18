@@ -2,7 +2,7 @@
 
 function getCarsBD($etatL){
     require('model/connectBD.php');
-    $sql="SELECT type, prix, photo, etatL FROM vehicule WHERE etatL=:etatL";
+    $sql="SELECT type, prix, photo, etatL, caract FROM vehicule WHERE etatL=:etatL";
     try {
         $commande = $pdo->prepare($sql);
         $commande->bindParam(':etatL', $etatL);
@@ -23,7 +23,7 @@ function getCarsBD($etatL){
 
 function getRentalCarsBD(){
     require('model/connectBD.php');
-    $sql="SELECT type, prix, photo, etatL FROM vehicule WHERE etatL REGEXP '^[0-9]+$'";
+    $sql="SELECT type, prix, photo, etatL, caract FROM vehicule WHERE etatL REGEXP '^[0-9]+$'";
     try {
         $commande = $pdo->prepare($sql);
         $bool = $commande->execute();

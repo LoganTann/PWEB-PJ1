@@ -13,8 +13,6 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/@materializecss/materialize@1.1.0-alpha/dist/js/materialize.min.js"></script>
-          
-
 
 </head>
 <body>
@@ -40,14 +38,29 @@
     </header>
     <main>
         <?php
+        // /index.php?page=vehicle&action=getCars
         if($Cars != false){
             echo("<h2>Liste des voitures : </h2>");
+
             echo("<ul>");
             foreach($Cars as $car){
                 echo("<li>". $car['type'] ." Prix : " . $car['prix'] . "€ </li>");
+                echo('<div class="row">');
+                echo(' <div class="col s12 m3">');
+                echo('<div class=card>');
+                echo('<div class=card-image>');
+                echo('<img src='.$car['photo'].'>');
+                echo('<a class="btn-floating halfway-fab waves-effect waves-light "><i class="material-icons">add</i></a>');
+                echo('</div>');
+                echo('<div class="card-content">');
+                echo('<span class="card-title">'.$car['type'].' '.$car['prix'].'€/heure'.'</span>');
+                echo('<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>');
+                echo('</div></div></div></div>');
             }
             echo("</ul>");
-
+/*
+            echo('<div class="row">');
+            echo(' <div class="col s12 m3">');
             echo('<div class=card>');
             echo('<div class=card-image>');
             echo('<img src="https://www.turbo.fr/sites/default/files/2021-03/Peugeot%20208.png">');
@@ -56,35 +69,13 @@
             echo('</div>');
             echo('<div class="card-content">');
             echo('<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>');
-            echo('</div></div>');
-
+            echo('</div></div></div></div>');
+*/
 
 
         }else echo ('pas de voitures dispo');
 
         ?>
-
-
-  <div class="row">
-    <div class="col s12 m6">
-
-
-      <div class="card">
-        <div class="card-image">
-          <img src="https://www.turbo.fr/sites/default/files/2021-03/Peugeot%20208.png">
-          <span class="card-title">Card Title</span>
-          <a class="btn-floating halfway-fab waves-effect waves-light "><i class="material-icons">add</i></a>
-        </div>
-        <div class="card-content">
-          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-        </div>
-      </div>
-
-
-    </div>
-  </div>
-              
-
     </main>
     <footer>
 
