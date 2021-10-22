@@ -2,7 +2,7 @@
 
 function getCarsBD($etatL){
     require('model/connectBD.php');
-    $sql="SELECT type, prix, photo, etatL FROM vehicule WHERE etatL=:etatL";
+    $sql="SELECT type, prix, photo, etatL, caract FROM vehicule WHERE etatL=:etatL";
     try {
         $commande = $pdo->prepare($sql);
         $commande->bindParam(':etatL', $etatL);
@@ -23,7 +23,7 @@ function getCarsBD($etatL){
 
 function getRentalCarsBD(){
     require('model/connectBD.php');
-    $sql="SELECT type, prix, photo, etatL FROM vehicule WHERE etatL REGEXP '^[0-9]+$'";
+    $sql="SELECT type, prix, photo, etatL, caract FROM vehicule WHERE etatL REGEXP '^[0-9]+$'";
     try {
         $commande = $pdo->prepare($sql);
         $bool = $commande->execute();
@@ -41,5 +41,17 @@ function getRentalCarsBD(){
     return $Cars;
 }
 
+
+function addCar($carType, $carPrice, $carCaract, $target_file, $carEtatL) {
+    require('model/connectBD.php');
+    $sql="INSERT INTO `vehicule` (`id`, `type`, `prix`, `caract`, `photo`, `etatL`) VALUES (NULL, :type, :price, :caract, :image, :etatl)";
+    $req = $pdo->prepare($sql);
+    $req->bindParam(':type', $carType);
+    $req->bindParam(':price', $carPrice);
+    $req->bindParam(':caract', $carCaract);
+    $req->bindParam(':image', $target_file);
+    $req->bindParam(':etatl', $carEtatL);
+    return $req->execute();
+}
 
 ?>
