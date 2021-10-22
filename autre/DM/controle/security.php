@@ -29,3 +29,5 @@ function checkParams(&$controle, &$action) {
 }
 
 checkParams($controle, $action);
+
+?>

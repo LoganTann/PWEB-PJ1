@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 15 oct. 2021 à 16:48
--- Version du serveur : 10.4.21-MariaDB
--- Version de PHP : 8.0.10
+-- Généré le : mer. 20 oct. 2021 à 18:13
+-- Version du serveur : 10.4.20-MariaDB
+-- Version de PHP : 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -82,7 +82,10 @@ CREATE TABLE `vehicule` (
 
 INSERT INTO `vehicule` (`id`, `type`, `prix`, `caract`, `photo`, `etatL`) VALUES
 (1, 'Citroen C3', 3, '{\r\n    \"typeEnergie\":\"diesel\",\r\n    \"automatique\":true,\r\n    \"nbPlaces\":7\r\n}', 'https://img-4.linternaute.com/4WeGVRYzVsI0z58HssduyU7H5_M=/1500x/smart/ed6e422426a840a5afd6cf27b97f941d/ccmcms-linternaute/13610948.jpg', 'disponible'),
-(2, 'Renault Megane', 1, '{\r\n    \"typeEnergie\":\"electrique\",\r\n    \"automatique\":true,\r\n    \"nbPlaces\":5\r\n}', 'https://cdn.motor1.com/images/mgl/2MVN4/s1/renault-megane-rs.jpg', 'en_revision');
+(2, 'Renault Megane', 1, '{\r\n    \"typeEnergie\":\"electrique\",\r\n    \"automatique\":true,\r\n    \"nbPlaces\":5\r\n}', 'https://cdn.motor1.com/images/mgl/2MVN4/s1/renault-megane-rs.jpg', 'en_revision'),
+(3, 'Peugeot 4008', 60000, '{\r\n    \"typeEnergie\":\"diesel\",\r\n    \"automatique\":false,\r\n    \"nbPlaces\":7\r\n}', 'https://www.largus.fr/images/images/peugeot-408-308-crossover-p54-2022redimensionner.jpg', '1'),
+(4, 'Dacia Spring', 15, '{\r\n    \"typeEnergie\":\"Essence\",\r\n    \"automatique\":true,\r\n    \"nbPlaces\":7\r\n}', 'https://cdn.motor1.com/images/mgl/6LNjk/s1/dacia-spring-electric-2021.jpg', 'disponible'),
+(5, 'Chevrolet Spark', 5, '{\r\n    \"typeEnergie\":\"Nucleaire\",\r\n    \"automatique\":true,\r\n    \"nbPlaces\":5\r\n}', 'https://images.caradisiac.com/logos-ref/modele/modele--chevrolet-spark/S0-modele--chevrolet-spark.jpg', '2');
 
 --
 -- Index pour les tables déchargées
@@ -126,7 +129,7 @@ ALTER TABLE `facture`
 -- AUTO_INCREMENT pour la table `vehicule`
 --
 ALTER TABLE `vehicule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

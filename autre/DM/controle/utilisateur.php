@@ -67,3 +67,5 @@ function bye() {
 	session_destroy();
 	require("./vue/contact/disconnected.tpl");
 }
+
+?>

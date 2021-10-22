@@ -34,3 +34,5 @@ function accueil() {
 function connect() {
     echo "créer";
 }
+
+?>
