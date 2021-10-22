@@ -54,4 +54,11 @@ function addCar($carType, $carPrice, $carCaract, $target_file, $carEtatL) {
     return $req->execute();
 }
 
+function deleteCar($carId) {
+    $sql="DELETE FROM `vehicule` WHERE id = :id";
+    $req = $pdo->prepare($sql);
+    $req->bindParam(':id', $carId);
+    return $req->execute();
+}
+
 ?>
