@@ -43,8 +43,9 @@ function manageCar() {
     }
     if (isset($_POST["event_carRemove"])) {
         $carId = $_POST["carId"];
-        deleteCar($_GET["carId"]);
+        deleteCar($carId);
         $data["msgs"][] = "Voiture ID='$carId' supprimée";
+        $data["boxGreen"] = true;
     }
 
     utils_getView("manageCar", $data);

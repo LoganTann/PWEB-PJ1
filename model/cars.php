@@ -55,6 +55,7 @@ function addCar($carType, $carPrice, $carCaract, $target_file, $carEtatL) {
 }
 
 function deleteCar($carId) {
+    require('model/connectBD.php');
     $sql="DELETE FROM `vehicule` WHERE id = :id";
     $req = $pdo->prepare($sql);
     $req->bindParam(':id', $carId);
