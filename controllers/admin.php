@@ -25,7 +25,7 @@ function manageCar() {
         $carCaract = json_encode([
             "typeEnergie" => $_POST["carCaract_typeEnergie"],
             "nbPlaces" => intval($_POST["carCaract_nombreDePlaces"]),
-            "automatique" => $_POST["carCaract_automatique"] != "on"
+            "automatique" => !isset($_POST["carCaract_automatique"])
         ]);
         $carPhoto = $_POST["carPhoto"];
         $carEtatL = $_POST["carEtatL"];

@@ -66,8 +66,8 @@
             
             <div class="input-field col s12 m6">
                 <select name="carEtatL">
-                    <option value="Dispo" selected>Disponible</option>
-                    <option value="EnRevision">En révision</option>
+                    <option value="disponible" selected>Disponible</option>
+                    <option value="en_revision">En révision</option>
                 </select>
                 <label>Etat</label>
             </div>
