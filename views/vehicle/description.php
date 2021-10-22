@@ -29,9 +29,8 @@
         <a href="?page=accounts&action=create" class="btn btn-large">S'inscrire</a>
         <a href="?page=accounts&action=connect" class="btn btn-large">Se connecter</a>
     </nav>
-    <header class="container">
-        <h3>Référence de l'API : </h3>
-        <p style="font-family: monospace;">/index.php<b>?page=</b>nomDuControlleur<b>&action=</b>nomDeFonction</p>
+    <header class="container grey">
+        <h1><?php echo($Descriptif[1]) ?></h1>
     </header>
     <main>
     <div class="row">
@@ -44,20 +43,9 @@
             }
         </style>
     <div class="col s4">
-        <a href="?page=vehicle&action=afficher_description&id=1">
-            <img src="https://www.publicdomainpictures.net/pictures/100000/nahled/classic-car-1404217966lQK.jpg">
-        </a>
+        <?php echo('<img src=' . $Descriptif[4] . '></img>') ?>
     </div>
-    <div class="col s4">
-        <a href="?page=vehicle&action=afficher_description&id=2">
-            <img src="https://www.publicdomainpictures.net/pictures/100000/nahled/classic-car-1404217966lQK.jpg">
-        </a>
-    </div>
-    <div class="col s4">
-        <a href="?page=vehicle&action=afficher_description&id=3">
-            <img src="https://www.publicdomainpictures.net/pictures/100000/nahled/classic-car-1404217966lQK.jpg">
-        </a>
-    </div>
+        <a href="?page=home" class="btn btn-large">Retour</a>
     </div>
     </main>
     <footer>
