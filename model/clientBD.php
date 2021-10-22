@@ -4,10 +4,10 @@ function valid_registration($user_info) {
 	if (!preg_match("/^[\w\- ]+$/", $user_info["nom"])) {
 		$errors[] = "Votre nom de famille ne doit pas contenir de caractères spéciaux !";
 	}
-	if (!preg_match("/^[\w\- ]+$/", $user_info["prenom"])) {
-		$errors[] = "Votre prénom ne doit pas contenir de caractères spéciaux !";
+	if (!preg_match("/^[\w\- ]+$/", $user_info["pseudo"])) {
+		$errors[] = "Votre pseudo ne doit pas contenir de caractères spéciaux !";
 	}
-	if (strlen($user_info["num"]) < 8) {
+	if (strlen($user_info["mdp"]) < 8) {
 		$errors[] = "Entrez un mot de passe d'au moins 8 caractères !";
 	}
 	if (!filter_var($user_info["email"], FILTER_VALIDATE_EMAIL)) {
@@ -18,13 +18,13 @@ function valid_registration($user_info) {
 
 function new_user($user_info) {
 	require('model/connectBD.php');
-	$sql  = "INSERT INTO `client` (`nom`, `pseudo`, `mdp`, `email`, `nomE`, `adresseE`)";
-	$sql .= "            VALUES (:nom, :pseudo, :mdp, :email, :nomE, :adresseE);";
-
+	echo "avant";
+	$sql  = "INSERT INTO `client` (`nom`, `pseudo`, `mdp`, `email`, `nomE`, `adresseE`) VALUES (:nom, :pseudo, :mdp, :email, :nomE, :adresseE)";
+	echo "apres";
 	try {
 		$commande = $pdo->prepare($sql);
 		$commande->bindParam(':nom', 		$user_info["nom"]);
-		$commande->bindParam(':prenom',		$user_info["prenom"]);
+		$commande->bindParam(':pseudo',		$user_info["pseudo"]);
 		$commande->bindParam(':mdp', 		$user_info["mdp"]);
 		$commande->bindParam(':email',	 	$user_info["email"]);
 		$commande->bindParam(':nomE', 		$user_info["nomE"]);

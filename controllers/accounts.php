@@ -10,12 +10,13 @@ function create() {
             "nomE" => $_POST["nomE"],
             "adresseE" => $_POST["adresseE"]
         );
+		var_dump($user_info);
 		require ("./model/clientBD.php");
 		$errors = valid_registration($user_info);
 		if (count($errors) <= 0 && ($id_user = new_user($user_info)) >= 0) {
 			$_SESSION['user_info'] = $user_info;
 			$_SESSION['user_info']['id'] = $id_user;
-			$nexturl = "index.php?controle=accounts&action=accueil";
+			$nexturl = "index.php?page=accounts&action=accueil";
 			header ("Location:" . $nexturl);
 			return;
 		}
@@ -25,10 +26,7 @@ function create() {
 }
 
 function accueil() {
-	require ("modele/contactBD.php");
-	$idn = $_SESSION['profil']['id_nom'];
-	$Contact = contacts($idn);
-	require ("vue/utilisateur/accueil.tpl");
+	require("views/home/home.php");
 }
 
 function connect() {
