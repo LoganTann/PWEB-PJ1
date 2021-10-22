@@ -12,7 +12,7 @@
 
     <h3>Ajouter une voiture</h3>
 
-    <form action="?page=admin&action=manageCar" method="POST">
+    <form enctype="multipart/form-data" action="?page=admin&action=manageCar" method="POST">
         <div class="row">
             <div class="input-field col s6">
                 <input type="text" name="carType" id="carPrice"/>
@@ -26,7 +26,7 @@
 
         <div class="row">
             <div class="input-field col s12 m6">
-                <select name="carCaract['typeEnergie']">
+                <select name="carCaract_typeEnergie">
                     <option value="Diesel" selected>Diesel</option>
                     <option value="Essence">Essence</option>
                     <option value="Electrique">Electrique</option>
@@ -40,13 +40,13 @@
             </div>
             <div class="col s3">
                 <label for="nbPlace">Nombre de places</label>
-                <input id="nbPlace" name="carCaract['nombreDePlaces']" type="number" placeholder="4" min="1" max="10" />
+                <input id="nbPlace" name="carCaract_nombreDePlaces" type="number" placeholder="4" min="1" max="10" />
             </div>
             <div class="col s3 switch">
                 Boite de vitesse<br>
                 <label>
                     Automatique
-                    <input type="checkbox" checked name="carCaract['automatique']">
+                    <input type="checkbox" checked name="carCaract_automatique">
                     <span class="lever"></span>
                     Manuelle
                 </label>

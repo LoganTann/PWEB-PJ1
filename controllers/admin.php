@@ -2,12 +2,10 @@
 
 
 function index() {
-
-
     // Youcef
     // afficher les voitures en stock --> terminé
     // afficher les locations en cours (ce que les clients ont loué) --> terminé
-    echo "index";
+    echo "index. Actions : manageCar, ";
 }
 
 
@@ -22,16 +20,26 @@ function manageCar() {
 
     // On reçois l'évènement que l'admin veut ajouter une voiture dans la bdd.
     if (isset($_POST["event_carAdd"])) {
-        var_dump($_POST);
         $carType = $_POST["carType"];
         $carPrice = $_POST["carPrice"];
-        $carCaract = json_encode($_POST["carCaract"]);
+        $carCaract = json_encode([
+            "typeEnergie" => $_POST["carCaract_typeEnergie"],
+            "nbPlaces" => intval($_POST["carCaract_nombreDePlaces"]),
+            "automatique" => $_POST["carCaract_automatique"] != "on"
+        ]);
         $carPhoto = $_POST["carPhoto"];
         $carEtatL = $_POST["carEtatL"];
         
         $target_file = "./writeable/$carPhoto";
+
+        var_dump($carCaract);
         if (move_uploaded_file($_FILES["carPhoto__file"]["tmp_name"], $target_file)) {
-            $data["msgs"][] = "Voiture $carType ajoutée ($carPrice, $carCaract, $carPhoto, $carEtatL)";
+            require("./model/cars.php");
+            if (addCar($carType, $carPrice, $carCaract, $target_file, $carEtatL)) {
+                $data["msgs"][] = "Requête exécutée avec succès";
+            } else {
+                $data["msgs"][] = "Problème SQL !";
+            }
         } else {
             $data["msgs"][] = "Echec... Avez-vous spécifié une image ?";
         }

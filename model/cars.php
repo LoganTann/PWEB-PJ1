@@ -42,4 +42,16 @@ function getRentalCarsBD(){
 }
 
 
+function addCar($carType, $carPrice, $carCaract, $target_file, $carEtatL) {
+    require('model/connectBD.php');
+    $sql="INSERT INTO `vehicule` (`id`, `type`, `prix`, `caract`, `photo`, `etatL`) VALUES (NULL, :type, :price, :caract, :image, :etatl)";
+    $req = $pdo->prepare($sql);
+    $req->bindParam(':type', $carType);
+    $req->bindParam(':price', $carPrice);
+    $req->bindParam(':caract', $carCaract);
+    $req->bindParam(':image', $target_file);
+    $req->bindParam(':etatl', $carEtatL);
+    return $req->execute();
+}
+
 ?>
