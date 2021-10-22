@@ -2,11 +2,12 @@
 <div class="container">
     <?php
         if (isset($data["msgs"]) && is_array($data["msgs"])) {
-            echo "<blockquote>";
+            $bgColor = $data["boxGreen"] ? "green lighten-3" : "red lighten-1" ;
+            echo "<div class='$bgColor' style='padding: 1em'>";
             foreach ($data["msgs"] as $elem) {
                 echo $elem, " <br>";
             }
-            echo "</blockquote>";
+            echo "</div>";
         }
     ?>
 
@@ -75,9 +76,14 @@
         <input type="submit" name="event_carAdd" class="btn"/>
     </form>
 
+    <h3>Liste des voitures</h3>
+
+    <ul>
+        <li><a href="?page=vehicle&action=getCars">Voitures non louées</a></li>
+        <li><a href="?page=vehicle&action=getRentalCars">Voitures louées</a></li>
+    </ul>
 
     <h3>Supprimer une voiture</h3>
-
 
     <form action="?page=admin&action=manageCar" method="POST">
         <input type="number" name="carId" />
