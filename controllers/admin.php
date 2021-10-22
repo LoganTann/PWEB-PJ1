@@ -14,8 +14,8 @@ function index() {
  */
 function manageCar() {
     // données qui seront envoyées à la vue.
-    $data = ["msgs" => [""]];
-
+    $data = ["msgs" => [], "boxGreen"=>false];
+    require("./model/cars.php");
     // On reçois l'évènement que l'admin veut ajouter une voiture dans la bdd.
     if (isset($_POST["event_carAdd"])) {
         $carType = $_POST["carType"];
@@ -31,10 +31,11 @@ function manageCar() {
         $target_file = "./writeable/$carPhoto";
 
         if (move_uploaded_file($_FILES["carPhoto__file"]["tmp_name"], $target_file)) {
-            require("./model/cars.php");
-            $data["msgs"][] = "Problème SQL !";
             if (addCar($carType, $carPrice, $carCaract, $target_file, $carEtatL)) {
                 $data["msgs"][] = "Requête exécutée avec succès";
+                $data["boxGreen"] = true;
+            } else {
+                $data["msgs"][] = "Problème SQL !";
             }
         } else {
             $data["msgs"][] = "Echec... Avez-vous spécifié une image ?";
@@ -42,11 +43,14 @@ function manageCar() {
     }
     if (isset($_POST["event_carRemove"])) {
         $carId = $_POST["carId"];
+        deleteCar($carId);
         $data["msgs"][] = "Voiture ID='$carId' supprimée";
+        $data["boxGreen"] = true;
     }
 
     utils_getView("manageCar", $data);
 }
+
 
 /**
  * Fonction utilitaire qui affiche une vue.
