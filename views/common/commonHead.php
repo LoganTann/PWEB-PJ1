@@ -21,7 +21,6 @@
             justify-content: right;
         }
         nav>a {
-            margin-top: 0.4em;
             margin-left: 1em;
         }
     </style>
@@ -30,38 +29,11 @@
         <a href="?page=accounts&action=connect" class="btn btn-large">Se connecter</a>
     </nav>
     <header class="container">
+        <h1>Bienvenue !</h1>
+
+
         <h3>Référence de l'API : </h3>
         <p style="font-family: monospace;">/index.php<b>?page=</b>nomDuControlleur<b>&action=</b>nomDeFonction</p>
     </header>
     <main>
-    <div class="row">
-        <style>
-            img {
-                display: flex;
-                justify-content: space-around;
-                width: 615px;
-                height: 407px;
-            }
-        </style>
-    <div class="col s4">
-        <a href="?page=vehicle&action=afficher_description&id=1">
-            <img src="https://www.publicdomainpictures.net/pictures/100000/nahled/classic-car-1404217966lQK.jpg">
-        </a>
-    </div>
-    <div class="col s4">
-        <a href="?page=vehicle&action=afficher_description&id=2">
-            <img src="https://www.publicdomainpictures.net/pictures/100000/nahled/classic-car-1404217966lQK.jpg">
-        </a>
-    </div>
-    <div class="col s4">
-        <a href="?page=vehicle&action=afficher_description&id=3">
-            <img src="https://www.publicdomainpictures.net/pictures/100000/nahled/classic-car-1404217966lQK.jpg">
-        </a>
-    </div>
-    </div>
-    </main>
-    <footer>
-
-    </footer>
-</body>
-</html>
+        <!-- END common Head -->
