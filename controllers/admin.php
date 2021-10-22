@@ -5,7 +5,7 @@ function index() {
     // Youcef
     // afficher les voitures en stock --> terminé
     // afficher les locations en cours (ce que les clients ont loué) --> terminé
-    echo "index. Actions : manageCar, ";
+    echo "Actions dans ce contrôleur : manageCar. Voir aussi : vehicle:getCars et vehicle:getRentalCars";
 }
 
 
@@ -15,8 +15,6 @@ function index() {
 function manageCar() {
     // données qui seront envoyées à la vue.
     $data = ["msgs" => [""]];
-
-    //require("./model/cars.php");
 
     // On reçois l'évènement que l'admin veut ajouter une voiture dans la bdd.
     if (isset($_POST["event_carAdd"])) {
@@ -32,13 +30,11 @@ function manageCar() {
         
         $target_file = "./writeable/$carPhoto";
 
-        var_dump($carCaract);
         if (move_uploaded_file($_FILES["carPhoto__file"]["tmp_name"], $target_file)) {
             require("./model/cars.php");
+            $data["msgs"][] = "Problème SQL !";
             if (addCar($carType, $carPrice, $carCaract, $target_file, $carEtatL)) {
                 $data["msgs"][] = "Requête exécutée avec succès";
-            } else {
-                $data["msgs"][] = "Problème SQL !";
             }
         } else {
             $data["msgs"][] = "Echec... Avez-vous spécifié une image ?";
