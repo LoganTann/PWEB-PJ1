@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paris Descar-z</title>
 
-    <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@materializecss/materialize@1.1.0-alpha/dist/css/materialize.min.css">
 
-    <!-- Compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/@materializecss/materialize@1.1.0-alpha/dist/js/materialize.min.js"></script>
-          
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
 </head>
@@ -28,12 +27,5 @@
         <a href="?page=accounts&action=create" class="btn btn-large">S'inscrire</a>
         <a href="?page=accounts&action=connect" class="btn btn-large">Se connecter</a>
     </nav>
-    <header class="container">
-        <h1>Bienvenue !</h1>
-
-
-        <h3>Référence de l'API : </h3>
-        <p style="font-family: monospace;">/index.php<b>?page=</b>nomDuControlleur<b>&action=</b>nomDeFonction</p>
-    </header>
     <main>
         <!-- END common Head -->

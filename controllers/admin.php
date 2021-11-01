@@ -1,16 +1,55 @@
 <?php
 
-
+/**
+ * Page d'accueil d'administration.
+ * Route : ?page=admin&action=index
+ * @see /views/admin/index.php
+ */
 function index() {
-    // Youcef
-    // afficher les voitures en stock --> terminé
-    // afficher les locations en cours (ce que les clients ont loué) --> terminé
-    echo "Actions dans ce contrôleur : manageCar. Voir aussi : vehicle:getCars et vehicle:getRentalCars";
+    $data = [
+        "connected" => false,
+        "box-color" => "orange",
+        "box-message" => "Pour accéder à l'espace administration, une identification est (logiquement) nécessaire !<br>
+            Hint de mot de passe : c'est la pire prononciation de &laquo;jzon&raquo; !"
+    ];
+    // Traitement du mot de passe, si envoyé
+    if (isset($_POST['password'])) {
+        $password_hashed = '$2y$10$xLI4nqFTEzLvmlW9xS5jWeYVWZxVpORPqjUSVA.DBQ/3/1fMW65GG';
+        if (password_verify($_POST['password'], $password_hashed)) {
+            $_SESSION['adminConnected'] = true;
+        } else {
+            $data['box-color'] = "red";
+            $data['box-message'] = 'Mot de passe incorrect. C\'était <span style="font-family: monospace">jizon</span>.';
+        }
+    }
+    // Passage à la vue d'une variable indiquant si l'admin est connecté
+    if (isset($_SESSION['adminConnected'])) {
+        $data['connected'] = true;
+    }
+    // Passage à la vue d'une variable indiquant si l'admin vient tout juste de se déconnecter
+    if (isset($_GET['customMsg'])) {
+        if ($_GET['customMsg'] == 'logout_OK') {
+            $data['box-color'] = "green";
+            $data['box-message'] = 'Déconnection effectuée avec succès';
+        }
+    }
+    // Appel de la vue avec un header & footer commun en plus
+    utils_getView('dashboard', $data);
 }
 
+/**
+ * Permet de se déconnecter
+ * Route : ?page=admin&action=logout
+ */
+function logout() {
+    unset($_SESSION['adminConnected']);
+    header('Location: ?page=admin&action=index&customMsg=logout_OK');
+}
 
 /**
- * Page de gestion des voitures. Permet d'ajouter une nouvelle voiture, ou de mettre une voiture en rupture de stocks
+ * Page de gestion des voitures.
+ * Permet d'ajouter une nouvelle voiture, ou de mettre une voiture en rupture de stock
+ * Route: ?page=admin&action=manageCars
  */
 function manageCar() {
     // données qui seront envoyées à la vue.
@@ -18,6 +57,7 @@ function manageCar() {
     require("./model/cars.php");
     // On reçois l'évènement que l'admin veut ajouter une voiture dans la bdd.
     if (isset($_POST["event_carAdd"])) {
+        // récupération des données du formulaire
         $carType = $_POST["carType"];
         $carPrice = $_POST["carPrice"];
         $carCaract = json_encode([
@@ -28,8 +68,8 @@ function manageCar() {
         $carPhoto = $_POST["carPhoto"];
         $carEtatL = $_POST["carEtatL"];
         
+        // traitement d'upload de fichiers
         $target_file = "./writeable/$carPhoto";
-
         if (move_uploaded_file($_FILES["carPhoto__file"]["tmp_name"], $target_file)) {
             if (addCar($carType, $carPrice, $carCaract, $target_file, $carEtatL)) {
                 $data["msgs"][] = "Requête exécutée avec succès";
@@ -53,7 +93,7 @@ function manageCar() {
 
 
 /**
- * Fonction utilitaire qui affiche une vue.
+ * Fonction __utilitaire__ qui affiche une vue.
  */
 function utils_getView($vueName, $data) {
     require("./views/common/commonHead.php");
@@ -62,16 +102,5 @@ function utils_getView($vueName, $data) {
 }
 
 function facture() {
-    // calcul des factures pour les entreprises (mois courant
-    // afficher la facture de la flotte de véhicules loués par une entreprise, avec une ligne de facturation par véhicule.
-    // Considérer une tarification différente si la durée de la location est importante (à évaluer en nb de jours ou de mois, par exemple).
-    // Il y aune réduction de 10% supplémentaire si le nombre de véhicules 
-    // de la flotte est >10. Si la durée restante de la location dépasse le mois,
-    // la facturation est mensualisée et à payer pour le mois courant.
 }
-
-function login() {
-
-}
-
 

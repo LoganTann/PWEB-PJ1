@@ -3,7 +3,7 @@
 session_start();
 
 $page = "home";
-$action = "home";
+$action = "index";
 
 if (isset($_GET["page"])) {
     $page = $_GET["page"];

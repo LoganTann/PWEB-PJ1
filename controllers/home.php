@@ -1,5 +1,5 @@
 <?php
 
-function home() {
+function index() {
     require("./views/home/home.php");
 }
