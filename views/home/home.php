@@ -25,10 +25,7 @@
             margin-left: 1em;
         }
     </style>
-    <nav class="yellow darken-3">
-        <a href="?page=accounts&action=create" class="btn btn-large">S'inscrire</a>
-        <a href="?page=accounts&action=connect" class="btn btn-large">Se connecter</a>
-    </nav>
+        <?php require("./views/home/navBarVisiteur.php"); ?>
     <header class="container">
         <h3>Référence de l'API : </h3>
         <p style="font-family: monospace;">/index.php<b>?page=</b>nomDuControlleur<b>&action=</b>nomDeFonction</p>

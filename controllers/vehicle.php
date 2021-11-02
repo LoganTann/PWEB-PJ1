@@ -20,7 +20,7 @@
     function getRentalCars(){
         require ("model/cars.php");
         $Cars = getRentalCarsBD();
-        require ("views/home/getRentalCars.php");
+        require ("views/home/getCars.php");
     }
 
 ?>
