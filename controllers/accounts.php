@@ -10,12 +10,12 @@ function create() {
             "nomE" => $_POST["nomE"],
             "adresseE" => $_POST["adresseE"]
         );
-		var_dump($user_info);
 		require ("./model/clientBD.php");
 		$errors = valid_registration($user_info);
 		if (count($errors) <= 0 && ($id_user = new_user($user_info)) >= 0) {
 			$_SESSION['user_info'] = $user_info;
 			$_SESSION['user_info']['id'] = $id_user;
+			$_SESSION['loggedin'] = 0;
 			$nexturl = "index.php?page=accounts&action=accueil";
 			header ("Location:" . $nexturl);
 			return;
@@ -30,7 +30,24 @@ function accueil() {
 }
 
 function connect() {
-    echo "créer";
+	$_SESSION['successfulConnection'] = -1;
+	if (count($_POST) > 0) {
+        $user_info = array(
+            "pseudo" => $_POST["pseudo"],
+            "mdp" => $_POST["mdp"]
+        );
+		require ("./model/clientBD.php");
+		if (verif_bd($user_info['pseudo'], $user_info['mdp'], $user_info)) {
+			$_SESSION['user_info'] = $user_info;
+			$_SESSION['user_info']['id'] = $id_user;
+			$_SESSION['loggedin'] = 0;
+			unset($_SESSION['successfulConnection']);
+			$nexturl = "index.php?page=accounts&action=accueil";
+			header ("Location:" . $nexturl);
+			return;
+		}
+	}
+    require("./views/accounts/connect.php");
 }
 
 ?>
