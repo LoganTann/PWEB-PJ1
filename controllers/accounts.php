@@ -30,7 +30,24 @@ function accueil() {
 }
 
 function connect() {
-    echo "connecter";
+	$_SESSION['successfulConnection'] = -1;
+	if (count($_POST) > 0) {
+        $user_info = array(
+            "pseudo" => $_POST["pseudo"],
+            "mdp" => $_POST["mdp"]
+        );
+		require ("./model/clientBD.php");
+		if (verif_bd($user_info['pseudo'], $user_info['mdp'], $user_info)) {
+			$_SESSION['user_info'] = $user_info;
+			$_SESSION['user_info']['id'] = $id_user;
+			$_SESSION['loggedin'] = 0;
+			unset($_SESSION['successfulConnection']);
+			$nexturl = "index.php?page=accounts&action=accueil";
+			header ("Location:" . $nexturl);
+			return;
+		}
+	}
+    require("./views/accounts/connect.php");
 }
 
 ?>

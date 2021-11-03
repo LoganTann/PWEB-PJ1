@@ -7,7 +7,7 @@
 
 </nav>
 
-<div id="modal1" class="modal">
+<div id="modal1" class="modal" style="width: 33% !important;">
     <div class="modal-content">
         <h4>Êtes vous sûr de vouloir quitter ?</h4>
     </div>
