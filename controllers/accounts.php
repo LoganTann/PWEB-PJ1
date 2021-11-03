@@ -33,4 +33,9 @@ function connect() {
     echo "créer";
 }
 
+function getRentalCars(){
+    require ("model/cars.php");
+    $Cars = getRentalCarsBD($_SESSION['user_info']['id']);
+    require ("views/home/getCars.php");
+}
 ?>

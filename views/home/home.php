@@ -10,12 +10,16 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/@materializecss/materialize@1.1.0-alpha/dist/js/materialize.min.js"></script>
-          
-
-
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <style>
+        .card-image{
+            height: 400px; /* Your height here */
+            display: flex;
+            align-items: center;
+        }
         nav {
             display: flex;
             justify-content: right;
@@ -24,6 +28,15 @@
             margin-top: 0.4em;
             margin-left: 1em;
         }
+        .icones {
+            width: 7%;
+            height: 7%;
+            margin-right: 2%;
+        }
+        .info-container {
+            display: flex;
+            align-items: center;
+        }
     </style>
         <?php require("./views/home/navBarVisiteur.php"); ?>
     <header class="container">
@@ -31,34 +44,25 @@
         <p style="font-family: monospace;">/index.php<b>?page=</b>nomDuControlleur<b>&action=</b>nomDeFonction</p>
     </header>
     <main>
-    <div class="row">
-        <style>
-            img {
-                display: flex;
-                justify-content: space-around;
-                width: 615px;
-                height: 407px;
+        <?php
+        if (isset($Cars)) {
+            echo ('<h2>Liste de nos véhicules : </h2><a href="?page=vehicle&action=getCars" class="waves-effect waves-light btn-small">Voir les voitures disponibles</a><div class="row">');
+
+            foreach ($Cars as $car) {
+                ?>
+                    <div class="col m3">
+                        <?php require("./views/home/card.php"); ?>
+                    </div>
+                <?php
             }
-        </style>
-    <div class="col s4">
-        <a href="?page=vehicle&action=afficher_description&id=1">
-            <img src="https://www.publicdomainpictures.net/pictures/100000/nahled/classic-car-1404217966lQK.jpg">
-        </a>
-    </div>
-    <div class="col s4">
-        <a href="?page=vehicle&action=afficher_description&id=2">
-            <img src="https://www.publicdomainpictures.net/pictures/100000/nahled/classic-car-1404217966lQK.jpg">
-        </a>
-    </div>
-    <div class="col s4">
-        <a href="?page=vehicle&action=afficher_description&id=3">
-            <img src="https://www.publicdomainpictures.net/pictures/100000/nahled/classic-car-1404217966lQK.jpg">
-        </a>
-    </div>
-    </div>
+            echo("</div>");
+        } else
+            echo ('pas de voitures dispo');
+
+        ?>
     </main>
     <footer>
-
+footer
     </footer>
 </body>
 </html>

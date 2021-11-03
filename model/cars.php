@@ -17,12 +17,14 @@ function description($id) {
     return $descriptif;
 }
 
-function getCarsBD($etatL){
+function getCarsBD($etatL=null){
     require('model/connectBD.php');
-    $sql="SELECT type, prix, photo, etatL, caract FROM vehicule WHERE etatL=:etatL";
+    is_null($etatL)?$sql="SELECT type, prix, photo, etatL, caract FROM vehicule":$sql="SELECT type, prix, photo, etatL, caract FROM vehicule WHERE etatL=:etatL";
     try {
         $commande = $pdo->prepare($sql);
-        $commande->bindParam(':etatL', $etatL);
+        if (!is_null($etatL)){
+            $commande->bindParam(':etatL', $etatL);
+        }
         $bool = $commande->execute();
         $Cars= array();
 			if ($bool) {
@@ -38,11 +40,12 @@ function getCarsBD($etatL){
     return $Cars;
 }
 
-function getRentalCarsBD(){
+function getRentalCarsBD($idu){
     require('model/connectBD.php');
-    $sql="SELECT type, prix, photo, etatL, caract FROM vehicule WHERE etatL REGEXP '^[0-9]+$'";
+    $sql="SELECT type, prix, photo, etatL, caract FROM vehicule WHERE etatL=:idu";
     try {
         $commande = $pdo->prepare($sql);
+        $commande->bindParam(':idu', $idu);
         $bool = $commande->execute();
         $Cars= array();
 			if ($bool) {
