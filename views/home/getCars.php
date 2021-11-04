@@ -1,4 +1,5 @@
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,63 +15,65 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/@materializecss/materialize@1.1.0-alpha/dist/js/materialize.min.js"></script>
 </head>
+
 <body>
-<style>
-    .card-image{
-        height: 400px; /* Your height here */
-        display: flex;
-        align-items: center;
-    }
-    nav {
-        display: flex;
-        justify-content: right;
-    }
-    nav>a {
-        margin-top: 0.4em;
-        margin-left: 1em;
-    }
-    .icones {
-        width: 7%;
-        height: 7%;
-        margin-right: 2%;
-    }
-    .info-container {
-        display: flex;
-        align-items: center;
-    }
-</style>
-<nav class="yellow darken-3">
-    <a href="?page=accounts&action=create" class="btn btn-large">S'inscrire</a>
-    <a href="?page=accounts&action=connect" class="btn btn-large">Se connecter</a>
-</nav>
-<header class="container">
-    <h1>Bienvenue !</h1>
+    <style>
+        .card-image {
+            height: 400px;
+            /* Your height here */
+            display: flex;
+            align-items: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: right;
+        }
+
+        nav>a {
+            margin-top: 0.4em;
+            margin-left: 1em;
+        }
+
+        .icones {
+            width: 7%;
+            height: 7%;
+            margin-right: 2%;
+        }
+
+        .info-container {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+    <nav class="yellow darken-3">
+        <a href="?page=accounts&action=create" class="btn btn-large">S'inscrire</a>
+        <a href="?page=accounts&action=connect" class="btn btn-large">Se connecter</a>
+    </nav>
+    <header class="container">
+        <h1>Bienvenue !</h1>
 
 
-    <h3>Référence de l'API : </h3>
-    <p style="font-family: monospace;">/index.php<b>?page=</b>nomDuControlleur<b>&action=</b>nomDeFonction</p>
-</header>
-<main>
+        <h3>Référence de l'API : </h3>
+        <p style="font-family: monospace;">/index.php<b>?page=</b>nomDuControlleur<b>&action=</b>nomDeFonction</p>
+    </header>
     <main>
-        <?php
-        if (isset($Cars)) {
-            echo ('<h2>Liste des voitures disponibles : </h2><div class="row">');
-            foreach ($Cars as $car) {
-                ?>
-                <div class="col m3">
+        <?php if (isset($Cars)) { ?>
+            <h2>Liste des voitures disponibles : </h2>
+            <div class="row">
+            <?foreach ($Cars as $car): ?>
+                <div class="col s12 m3">
                     <?php require("./views/home/card.php"); ?>
                 </div>
-                <?php
-            }
-            echo("</div>");
-        } else
-            echo ('pas de voitures dispo');
-
-        ?>
+            <?php endforeach; ?>
+            </div>
+        <?php } else { ?>
+            Pas de voitures dispo
+        <?php } ?>
     </main>
-</main>
-<footer>
-
-</footer>
+    <footer>
+        <p>© 2021 - pweb</p>
+    </footer>
 </body>
+
 </html>

@@ -1,4 +1,5 @@
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,56 +14,62 @@
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+
 <body>
     <style>
-        .card-image{
-            height: 400px; /* Your height here */
+        .card-image {
+            height: 400px;
+            /* Your height here */
             display: flex;
             align-items: center;
         }
+
         nav {
             display: flex;
             justify-content: right;
         }
+
         nav>a {
             margin-top: 0.4em;
             margin-left: 1em;
         }
+
         .icones {
             width: 7%;
             height: 7%;
             margin-right: 2%;
         }
+
         .info-container {
             display: flex;
             align-items: center;
         }
     </style>
-        <?php require("./views/home/navBarVisiteur.php"); ?>
+    <?php require("./views/home/navBarVisiteur.php"); ?>
     <header class="container">
         <h3>Référence de l'API : </h3>
         <p style="font-family: monospace;">/index.php<b>?page=</b>nomDuControlleur<b>&action=</b>nomDeFonction</p>
     </header>
     <main>
+        <?php if (isset($Cars)) { ?>
+            <h2>Liste de nos véhicules : </h2>
+            <a href="?page=vehicle&action=getCars" class="waves-effect waves-light btn-small">Voir les voitures disponibles</a>
+            <div class="row">
+            <?php foreach ($Cars as $car): ?>
+                <div class="col s12 m3">
+                    <?php require("./views/home/card.php"); ?>
+                </div>
+            <?php endforeach; ?>
+            </div>;
         <?php
-        if (isset($Cars)) {
-            echo ('<h2>Liste de nos véhicules : </h2><a href="?page=vehicle&action=getCars" class="waves-effect waves-light btn-small">Voir les voitures disponibles</a><div class="row">');
-
-            foreach ($Cars as $car) {
-                ?>
-                    <div class="col m3">
-                        <?php require("./views/home/card.php"); ?>
-                    </div>
-                <?php
-            }
-            echo("</div>");
-        } else
-            echo ('pas de voitures dispo');
-
+        } else {
+            echo 'pas de voitures dispo';
+        }
         ?>
     </main>
     <footer>
-footer
+        <p>© 2021 - pweb</p>
     </footer>
 </body>
+
 </html>
