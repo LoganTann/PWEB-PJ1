@@ -15,8 +15,7 @@
 
 <body>
 
-    <nav class="yellow darken-3">
-    </nav>
+    <?php require("./views/home/navbarVisiteur.php"); ?>
 
     <div class="login">
         <div class="form yellow darken-3">

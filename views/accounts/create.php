@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,62 +16,63 @@
 
 <body>
 
-<style>
+    <style>
         nav {
             display: flex;
             justify-content: right;
         }
+
         nav>a {
             margin-top: 0.4em;
             margin-left: 1em;
         }
     </style>
-    <nav class="yellow darken-3">
-    </nav>
+    <?php require("./views/home/navbarVisiteur.php"); ?>
 
     <h1>Formulaire d'incription</h1><br>
     <div class="row">
-        <form class="col s12" action="index.php?page=accounts&action=create" method="post" >
-        <div class="row">
-            <div class="input-field col s3">
-                <label for="nom">Nom :</label>
-                <input type="text" id="nom" name="nom">
+        <form class="col s12" action="index.php?page=accounts&action=create" method="post">
+            <div class="row">
+                <div class="input-field col s3">
+                    <label for="nom">Nom :</label>
+                    <input type="text" id="nom" name="nom">
+                </div>
+                <div class="input-field col s3">
+                    <label for="pseudo">Pseudo :</label>
+                    <input type="text" id="pseudo" name="pseudo">
+                </div>
             </div>
-            <div class="input-field col s3">
-                <label for="pseudo">Pseudo :</label>
-                <input type="text" id="pseudo" name="pseudo">
+            <div class="row">
+                <div class="input-field col s6">
+                    <label for="mdp">Mot de passe :</label>
+                    <input type="password" id="mdp" name="mdp">
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s6">
-                <label for="mdp">Mot de passe :</label>
-                <input type="password" id="mdp" name="mdp">
+            <div class="row">
+                <div class="input-field col s6">
+                    <label for="email">E-mail :</label>
+                    <input type="email" id="email" name="email">
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s6">
-                <label for="email">E-mail :</label>
-                <input type="email" id="email" name="email">
+            <div class="row">
+                <div class="input-field col s6">
+                    <label for="nomE">Nom d'entreprise :</label>
+                    <input type="text" id="nomE" name="nomE">
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s6">
-                <label for="nomE">Nom d'entreprise :</label>
-                <input type="text" id="nomE" name="nomE">
+            <div class="row">
+                <div class="input-field col s6">
+                    <label for="adresseE">Adresse d'entreprise :</label>
+                    <input type="text" id="adresseE" name="adresseE">
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s6">
-                <label for="adresseE">Adresse d'entreprise :</label>
-                <input type="text" id="adresseE" name="adresseE">
-            </div>
-        </div>
 
-        <input type="submit" class="btn btn-large"></input>
-        <a href="?page=accounts&action=connect">Vous possedez déjà un compte ?</a>
+            <input type="submit" class="btn btn-large"></input>
+            <a href="?page=accounts&action=connect">Vous possedez déjà un compte ?</a>
         </form>
         <p><?php var_dump($errors); ?> </p>
     </div>
 
 </body>
+
 </html>
