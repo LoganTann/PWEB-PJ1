@@ -53,6 +53,7 @@ function connect() {
 function getRentalCars(){
     require ("model/cars.php");
     $Cars = getRentalCarsBD($_SESSION['user_info']['id']);
+    var_dump($_SESSION);
     require ("views/home/getCars.php");
 }
 ?>

@@ -46,12 +46,17 @@
             align-items: center;
         }
     </style>
-    <nav class="yellow darken-3">
-        <a href="?page=accounts&action=create" class="btn btn-large">S'inscrire</a>
-        <a href="?page=accounts&action=connect" class="btn btn-large">Se connecter</a>
-    </nav>
+    <?php
+    if($_SESSION['loggedin'] == -1) {
+        require("./views/home/navbarVisiteur.php");
+    }
+    else {
+        require("./views/home/navbarSub.php");
+    }
+
+    ?>
     <header class="container">
-        <h1>Bienvenue !</h1>
+        <h1>Gestion de la flotte</h1>
 
 
         <h3>Référence de l'API : </h3>
@@ -59,9 +64,9 @@
     </header>
     <main>
         <?php if (isset($Cars)) { ?>
-            <h2>Liste des voitures disponibles : </h2>
+            <h2>Liste des voitures en cours de location : </h2>
             <div class="row">
-            <?foreach ($Cars as $car): ?>
+            <?php foreach ($Cars as $car): ?>
                 <div class="col s12 m3">
                     <?php require("./views/home/card.php"); ?>
                 </div>

@@ -60,7 +60,7 @@ function verif_bd($pseudo,$mdp,&$user_info) {
 	}
 	else {
 		$user_info = $resultat[0];
-		return true;
+        return true;
 	}
 }
 ?>
