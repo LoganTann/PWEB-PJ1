@@ -46,6 +46,7 @@
             align-items: center;
         }
     </style>
+     <?php
         if($_SESSION['loggedin'] == -1) {
             require("./views/home/navbarVisiteur.php");
         }
