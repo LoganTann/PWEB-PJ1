@@ -67,6 +67,7 @@
         </div>
 
         <input type="submit" class="btn btn-large"></input>
+        <a href="?page=accounts&action=connect">Vous possedez déjà un compte ?</a>
         </form>
         <p><?php var_dump($errors); ?> </p>
     </div>

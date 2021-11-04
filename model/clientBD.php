@@ -18,9 +18,7 @@ function valid_registration($user_info) {
 
 function new_user($user_info) {
 	require('model/connectBD.php');
-	echo "avant";
 	$sql  = "INSERT INTO `client` (`nom`, `pseudo`, `mdp`, `email`, `nomE`, `adresseE`) VALUES (:nom, :pseudo, :mdp, :email, :nomE, :adresseE)";
-	echo "apres";
 	try {
 		$commande = $pdo->prepare($sql);
 		$commande->bindParam(':nom', 		$user_info["nom"]);

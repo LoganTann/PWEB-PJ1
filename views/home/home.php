@@ -11,6 +11,7 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/@materializecss/materialize@1.1.0-alpha/dist/js/materialize.min.js"></script>
+
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
@@ -45,7 +46,14 @@
             align-items: center;
         }
     </style>
-    <?php require("./views/home/navBarVisiteur.php"); ?>
+        if($_SESSION['loggedin'] == -1) {
+            require("./views/home/navbarVisiteur.php");
+        }
+        else {
+            require("./views/home/navbarSub.php");
+        }
+        
+     ?>
     <header class="container">
         <h3>Référence de l'API : </h3>
         <p style="font-family: monospace;">/index.php<b>?page=</b>nomDuControlleur<b>&action=</b>nomDeFonction</p>
