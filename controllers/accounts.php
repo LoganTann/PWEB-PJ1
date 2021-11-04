@@ -50,4 +50,9 @@ function connect() {
     require("./views/accounts/connect.php");
 }
 
+function getRentalCars(){
+    require ("model/cars.php");
+    $Cars = getRentalCarsBD($_SESSION['user_info']['id']);
+    require ("views/home/getCars.php");
+}
 ?>
