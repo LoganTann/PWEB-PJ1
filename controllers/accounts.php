@@ -59,69 +59,63 @@ function getBill()
 
 	class PDF extends FPDF
 	{
-
+		// En-tête
 		function Header()
 		{
+			//red part
+			$this->SetX(5);
+			$this->SetY(5);
+
+			$this->SetDrawColor(255, 0, 0);
+			$this->SetFillColor(255, 0, 0);
+			$this->SetTextColor(255, 0, 0);
+
+			$this->Cell(190, 9, "", 1, 1, 'C', true);
+
+			//grey part
+			$this->SetX(5);
+			$this->SetY(14);
+
+			$this->SetDrawColor(247, 243, 243);
+			$this->SetFillColor(247, 243, 243);
+			$this->SetTextColor(247, 243, 243);
+
+			$this->Cell(190, 50, "", 1, 1, 'C', true);
+
+
 			// Logo
-			$this->Image('./views/logo.png', 10, 6, 30);
-			// Police Arial gras 15
-			$this->SetFont('Arial', 'B', 15);
-			// Décalage à droite
-			$this->Cell(80);
-			// Titre
-			$this->Cell(30, 10, 'Titre', 1, 0, 'C');
-			// Saut de ligne
-			$this->Ln(20);
+			$this->Image('./views/home/logo.png', 15, 25, 50);
+
+			$this->SetXY(140, 25);
+
+			$this->SetTextColor(127, 122, 122);
+			$this->SetFont('Times', 'B', 15);
+			$this->SetFontSize(15);
+
+			$this->Cell(60, 10, 'FACTURE', 1, 0, 'C');
+
+			$this->SetXY(140, 33);
+			$this->SetFont('Times', '', 15);
+
+			$today = date("m.d.y");
+			$this->Cell(60, 10, 'Date : ' . $today, 1, 0, 'C');
+
+			$this->SetXY(153, 41);
+
+			$this->SetFillColor(0, 0, 0);
+			$this->Cell(34, 0.4, '', 1, 0, 'C', true);
+
+			$this->SetXY(140, 42);
+			$this->SetFont('Times', '', 15);
+
+			$this->Cell(60, 10, 'No. de facture : 1', 1, 0, 'C'); //$_SESSION['facture']['id']
+
+			$this->SetXY(151, 50);
+
+			$this->SetFillColor(0, 0, 0);
+			$this->Cell(38, 0.4, '', 1, 0, 'C', true);
 		}
 
-		// Chargement des données
-		function LoadData($file)
-		{
-			// Lecture des lignes du fichier
-			$lines = file($file);
-			$data = array();
-			foreach ($lines as $line)
-				$data[] = explode(';', trim($line));
-			return $data;
-		}
-
-		// Tableau simple
-		function BasicTable($header, $data)
-		{
-			// En-tête
-			foreach ($header as $col)
-				$this->Cell(40, 7, $col, 1);
-			$this->Ln();
-			// Données
-			foreach ($data as $row) {
-				foreach ($row as $col)
-					$this->Cell(40, 6, $col, 1);
-				$this->Ln();
-			}
-		}
-
-		// Tableau amélioré
-		function ImprovedTable($header, $data)
-		{
-			// Largeurs des colonnes
-			$w = array(40, 35, 45, 40);
-			// En-tête
-			for ($i = 0; $i < count($header); $i++)
-				$this->Cell($w[$i], 7, $header[$i], 1, 0, 'C');
-			$this->Ln();
-			// Données
-			foreach ($data as $row) {
-				$this->Cell($w[0], 6, $row[0], 'LR');
-				$this->Cell($w[1], 6, $row[1], 'LR');
-				$this->Cell($w[2], 6, number_format($row[2], 0, ',', ' '), 'LR', 0, 'R');
-				$this->Cell($w[3], 6, number_format($row[3], 0, ',', ' '), 'LR', 0, 'R');
-				$this->Ln();
-			}
-			// Trait de terminaison
-			$this->Cell(array_sum($w), 0, '', 'T');
-		}
-
-		// Tableau coloré
 		function FancyTable($header, $data)
 		{
 			// Couleurs, épaisseur du trait et police grasse
@@ -132,8 +126,11 @@ function getBill()
 			$this->SetFont('', 'B');
 			// En-tête
 			$w = array(40, 35, 45, 40);
-			for ($i = 0; $i < count($header); $i++)
+			for ($i = 0; $i < count($header); $i++) {
+				var_dump($header[$i]);
+				echo("<br>");
 				$this->Cell($w[$i], 7, $header[$i], 1, 0, 'C', true);
+			}
 			$this->Ln();
 			// Restauration des couleurs et de la police
 			$this->SetFillColor(224, 235, 255);
@@ -152,14 +149,30 @@ function getBill()
 			// Trait de terminaison
 			$this->Cell(array_sum($w), 0, '', 'T');
 		}
+
+		// Pied de page
+		function Footer()
+		{
+			$this->SetY(-15);
+			$this->SetDrawColor(255, 0, 0);
+			$this->SetFillColor(255, 0, 0);
+			$this->SetTextColor(255, 255, 255);
+
+			$this->SetFont('Arial', 'B', 12);
+			$this->Cell(190, 9, 'Page ' . $this->PageNo() . '/{nb}', 1, 1, 'C', true);
+		}
 	}
 
+	// Instanciation de la classe dérivée
 	$pdf = new PDF();
-	// Titres des colonnes
-	$header = array('Pays', 'Capitale', 'Superficie (km²)', 'Pop. (milliers)');
-	// Chargement des données
-	$data = $pdf->LoadData('pays.txt');
+	$pdf->AliasNbPages();
 	$pdf->AddPage();
-	$pdf->FancyTable($header, $data);
+	$header = array('v.id', 'type', 'prix', 'caract');
+
+	require("./model/cars.php");
+	$Cars[] = description(1);
+	$Cars[] = description(2);
+
+	$pdf->FancyTable($header, $Cars);
 	$pdf->Output();
 }
