@@ -15,18 +15,7 @@
 
 
 <body>
-
-    <style>
-        nav {
-            display: flex;
-            justify-content: right;
-        }
-
-        nav>a {
-            margin-top: 0.4em;
-            margin-left: 1em;
-        }
-    </style>
+    
     <?php require("./views/home/navbarVisiteur.php"); ?>
 
     <h1>Formulaire d'incription</h1><br>

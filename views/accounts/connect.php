@@ -27,7 +27,7 @@
             </form>
             <a href="?page=accounts&action=create" style="font-size: 14px">Vous n'avez pas encore de compte ?</a>
             <?php
-            if(isset($_SESSION['successfulConnection']) && isset($_POST['pseudo'])  && isset($_POST['mdp']) && $_SESSION['successfulConnection'] == -1) {
+            if (isset($_SESSION['successfulConnection']) && isset($_POST['pseudo'])  && isset($_POST['mdp']) && $_SESSION['successfulConnection'] == -1) {
                 echo ("<p style='color: red'>Pseudo ou mot de passe incorrect</p>");
             }
             ?>
@@ -90,15 +90,5 @@
     .form span {
         font-size: 75px;
         color: #4b6cb7;
-    }
-
-    nav {
-        display: flex;
-        justify-content: right;
-    }
-
-    nav>a {
-        margin-top: 0.4em;
-        margin-left: 1em;
     }
 </style>

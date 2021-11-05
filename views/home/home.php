@@ -18,15 +18,6 @@
 
 <body>
     <style>
-        nav {
-            display: flex;
-            justify-content: right;
-        }
-
-        nav>a {
-            margin-top: 0.4em;
-            margin-left: 1em;
-        }
     </style>
     <?php
         if($_SESSION['loggedin'] == -1) {
