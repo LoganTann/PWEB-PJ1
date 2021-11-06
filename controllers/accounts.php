@@ -205,7 +205,8 @@ function getBill()
 				$fill = !$fill;
 			}
 			// Trait de terminaison
-			$this->Cell(array_sum($w), 0, '', 'T');
+			$this->Cell(array_sum($w), 0, '', 0, 1, 'T');
+			$this->Cell(array_sum($w), 10, 'Total a payer : ', 'T'); //. $_SESSION['facture']['total']
 		}
 
 		// Pied de page
@@ -224,7 +225,7 @@ function getBill()
 	$pdf = new PDF();
 	$pdf->AliasNbPages();
 	$pdf->AddPage();
-	$header = array('v.id', 'type', 'prix', 'caract');
+	$header = array('v.id', 'type', 'caract', 'prix');
 
 	require("./model/cars.php");
 	$Cars[] = description(1);
