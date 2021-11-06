@@ -56,15 +56,13 @@
 
     ?>
     <header class="container">
-        <h1>Gestion de la flotte</h1>
-
-
+        <h1>Véhicules</h1>
         <h3>Référence de l'API : </h3>
         <p style="font-family: monospace;">/index.php<b>?page=</b>nomDuControlleur<b>&action=</b>nomDeFonction</p>
     </header>
     <main>
         <?php if (isset($Cars)) { ?>
-            <h2>Liste des voitures en cours de location : </h2>
+            <h2>Liste des voitures : </h2>
             <div class="row">
             <?php foreach ($Cars as $car): ?>
                 <div class="col s12 m3">

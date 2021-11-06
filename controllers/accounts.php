@@ -39,7 +39,7 @@ function connect() {
 		require ("./model/clientBD.php");
 		if (verif_bd($user_info['pseudo'], $user_info['mdp'], $user_info)) {
 			$_SESSION['user_info'] = $user_info;
-			$_SESSION['user_info']['id'] = $id_user;
+			// $_SESSION['user_info']['id'] = $id_user;
 			$_SESSION['loggedin'] = 0;
 			unset($_SESSION['successfulConnection']);
 			$nexturl = "index.php?page=accounts&action=accueil";
@@ -53,7 +53,7 @@ function connect() {
 function getRentalCars(){
     require ("model/cars.php");
     $Cars = getRentalCarsBD($_SESSION['user_info']['id']);
-    var_dump($_SESSION);
     require ("views/home/getCars.php");
 }
+
 ?>

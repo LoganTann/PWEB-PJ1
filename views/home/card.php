@@ -2,8 +2,9 @@
     <div class=card-image>
         <?php
         echo ('<img src=' . $car['photo'] . '>');
+
+        echo('<a class="btn-floating halfway-fab waves-effect waves-light" href="?page=customer&action=addToCart&id='.$car['id'].'"><i class="material-icons">add</i></a>');
         ?>
-        <a class="btn-floating halfway-fab waves-effect waves-light "><i class="material-icons">add</i></a>
     </div>
     <div class="card-content">
         <?php
