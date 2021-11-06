@@ -206,12 +206,22 @@ function getBill()
 			}
 			// Trait de terminaison
 			$this->Cell(array_sum($w), 0, '', 0, 1, 'T');
-			$this->Cell(array_sum($w), 10, 'Total a payer : ', 'T'); //. $_SESSION['facture']['total']
+			if(count($data)>10){
+				$this->Cell(array_sum($w), 10, 'Total a payer (avec reduction 10%)* : ', 'T'); //. $_SESSION['facture']['total'] / 10
+			} else {
+				$this->Cell(array_sum($w), 10, 'Total a payer (sans reduction 10%)* : ', 'T'); //. $_SESSION['facture']['total']
+			}
+			
 		}
 
 		// Pied de page
 		function Footer()
 		{
+			$this->SetY(-25);
+			$this->SetFontSize(12);
+			$this->SetTextColor(0, 0, 0);
+			$this->Cell(10, 10, '* Beneficiez d\'une reduction de 10% en louant au moins 10 voitures.', 0, 0);
+			
 			$this->SetY(-15);
 			$this->SetDrawColor(255, 0, 0);
 			$this->SetFillColor(255, 0, 0);
