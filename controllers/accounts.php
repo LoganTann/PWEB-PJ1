@@ -114,6 +114,65 @@ function getBill()
 
 			$this->SetFillColor(0, 0, 0);
 			$this->Cell(38, 0.4, '', 1, 0, 'C', true);
+			$this->Ln();
+			$this->Cell(0, 20, '', 0, 1);
+		}
+
+		function EnterpriseInfos($info_to_fill, $user_info)
+		{
+			$this->SetFillColor(247, 243, 243);
+			$this->SetTextColor(127, 122, 122);
+			$this->SetLineWidth(.3);
+			$this->SetXY(10,70);
+			$w = array(35, 35, 35, 35, 35);
+			for ($i = 0; $i < count($info_to_fill); $i++) {
+				$this->Cell($w[$i], 12, $info_to_fill[$i], 0, 1, 'C', true);
+			}
+			$this->SetFillColor(127, 122, 122);
+			$this->SetXY(12, 80);
+			$this->Cell(31, 0.1, '', 0, 0, 'C', true);
+
+			$this->SetXY(12, 92);
+			$this->Cell(31, 0.1, '', 0, 0, 'C', true);
+
+			$this->SetXY(12, 104);
+			$this->Cell(31, 0.1, '', 0, 0, 'C', true);
+
+			$this->SetXY(12, 116);
+			$this->Cell(31, 0.1, '', 0, 0, 'C', true);
+
+			$this->SetXY(12, 128);
+			$this->Cell(31, 0.1, '', 0, 0, 'C', true);
+
+			$this->SetFillColor(247, 243, 243);
+			$this->SetXY(46,70);
+			$this->Cell(80, 12, $user_info['id'], 0, 1, 'C', true);
+			$this->SetX(46);
+			$this->Cell(80, 12, $user_info['nom'], 0, 1, 'C', true);
+			$this->SetX(46);
+			$this->Cell(80, 12, $user_info['email'], 0, 1, 'C', true);
+			$this->SetX(46);
+			$this->Cell(80, 12, $user_info['nomE'], 0, 1, 'C', true);
+			$this->SetX(46);
+			$this->Cell(80, 12, $user_info['adresseE'], 0, 1, 'C', true);
+
+			$this->SetFillColor(127, 122, 122);
+			$this->SetXY(48, 80);
+			$this->Cell(76, 0.1, '', 0, 0, 'C', true);
+
+			$this->SetXY(48, 92);
+			$this->Cell(76, 0.1, '', 0, 0, 'C', true);
+
+			$this->SetXY(48, 104);
+			$this->Cell(76, 0.1, '', 0, 0, 'C', true);
+
+			$this->SetXY(48, 116);
+			$this->Cell(76, 0.1, '', 0, 0, 'C', true);
+
+			$this->SetXY(48, 128);
+			$this->Cell(76, 0.1, '', 0, 0, 'C', true);
+			
+
 		}
 
 		function FancyTable($header, $data)
@@ -123,12 +182,11 @@ function getBill()
 			$this->SetTextColor(255);
 			$this->SetDrawColor(128, 0, 0);
 			$this->SetLineWidth(.3);
-			$this->SetFont('', 'B');
+			$this->SetFont('Times', 'B');
+			$this->SetXY(10, 140);
 			// En-tête
 			$w = array(40, 35, 45, 40);
 			for ($i = 0; $i < count($header); $i++) {
-				var_dump($header[$i]);
-				echo("<br>");
 				$this->Cell($w[$i], 7, $header[$i], 1, 0, 'C', true);
 			}
 			$this->Ln();
@@ -139,10 +197,10 @@ function getBill()
 			// Données
 			$fill = false;
 			foreach ($data as $row) {
-				$this->Cell($w[0], 6, $row[0], 'LR', 0, 'L', $fill);
-				$this->Cell($w[1], 6, $row[1], 'LR', 0, 'L', $fill);
-				$this->Cell($w[2], 6, number_format($row[2], 0, ',', ' '), 'LR', 0, 'R', $fill);
-				$this->Cell($w[3], 6, number_format($row[3], 0, ',', ' '), 'LR', 0, 'R', $fill);
+				$this->Cell($w[0], 6, "", 'LR', 0, 'L', $fill);
+				$this->Cell($w[1], 6, "", 'LR', 0, 'L', $fill);
+				$this->Cell($w[2], 6, "", 'LR', 0, 'R', $fill);
+				$this->Cell($w[3], 6, "", 'LR', 0, 'R', $fill);
 				$this->Ln();
 				$fill = !$fill;
 			}
@@ -158,12 +216,11 @@ function getBill()
 			$this->SetFillColor(255, 0, 0);
 			$this->SetTextColor(255, 255, 255);
 
-			$this->SetFont('Arial', 'B', 12);
+			$this->SetFont('Times', 'B', 15);
 			$this->Cell(190, 9, 'Page ' . $this->PageNo() . '/{nb}', 1, 1, 'C', true);
 		}
 	}
 
-	// Instanciation de la classe dérivée
 	$pdf = new PDF();
 	$pdf->AliasNbPages();
 	$pdf->AddPage();
@@ -172,7 +229,9 @@ function getBill()
 	require("./model/cars.php");
 	$Cars[] = description(1);
 	$Cars[] = description(2);
-
+	$info_to_fill = array('Identifiant :', 'Nom :', 'E-mail :', 'Entreprise :', 'Adresse :');
+	$user_info = $_SESSION['user_info'];
+	$pdf->EnterpriseInfos($info_to_fill, $user_info);
 	$pdf->FancyTable($header, $Cars);
 	$pdf->Output();
 }
