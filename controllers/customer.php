@@ -52,11 +52,12 @@ function rent(){
     $facture_info = array(
         "ide" => $_SESSION['user_info']['id'],
         "idv" => $_SESSION['cart'],
-        "dateD" => $_SESSION['dates']['Debut'],
-        "dateF" => $_SESSION['dates']['Fin'],
+        "dateD" => date("Y-m-d",strtotime($_SESSION['dates']['Debut'])),
+        "dateF" => date("Y-m-d",strtotime($_SESSION['dates']['Fin'])),
         "valeur" => $_SESSION['facture']['valeur'],
         "etatR" => 0
     );
+
     if ($idfacture = creerFacture($facture_info) >=0){
         $_SESSION['facture']['id'] = $idfacture;
         $nexturl = "index.php?page=customer&action=facture";
