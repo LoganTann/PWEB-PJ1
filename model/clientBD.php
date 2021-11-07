@@ -63,4 +63,26 @@ function verif_bd($pseudo,$mdp,&$user_info) {
         return true;
 	}
 }
+
+function getNbCars($id){
+    require('model/connectBD.php');
+    $sql = "SELECT count(*) AS nb FROM `vehicule` WHERE etatL=:id";
+    try {
+        $commande = $pdo->prepare($sql);
+        $commande->bindParam(':id', $id);
+        if ($commande->execute()) {
+            $resultat = $commande->fetchALL(PDO::FETCH_ASSOC);
+        }
+    }
+    catch (PDOException $e) {
+        echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+        die();
+    }
+    if (count($resultat) == 0) {
+        return false;
+    }
+    else {
+        return $resultat[0];
+    }
+}
 ?>

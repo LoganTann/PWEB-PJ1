@@ -271,4 +271,10 @@ function getRentalCars(){
     require ("views/home/getCars.php");
 }
 
+function getNb(){
+	require ('./model/clientBD.php');
+	$count = getNbCars($_SESSION['user_info']['id']);
+	return ($count['nb']);
+}
+
 ?>
