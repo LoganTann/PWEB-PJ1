@@ -108,7 +108,7 @@ function getBill()
 			$this->SetXY(140, 42);
 			$this->SetFont('Times', '', 15);
 
-			$this->Cell(60, 10, 'No. de facture : 1', 1, 0, 'C'); //$_SESSION['facture']['id']
+			$this->Cell(60, 10, 'No. de facture : ' . $_SESSION['facture']['id'], 1, 0, 'C');
 
 			$this->SetXY(151, 50);
 
@@ -174,60 +174,71 @@ function getBill()
 			$this->Cell(76, 0.1, '', 0, 0, 'C', true);
 		}
 
-		function RentedVehicule($header, $data)
+		function RentedVehicule($header, $InfoCar)
 		{
 			$this->SetFillColor(247, 243, 243);
 			$this->SetTextColor(127, 122, 122);
 			$this->SetLineWidth(.3);
 			$this->SetXY(84,145);
 			$this->Cell(40, 10, "Voiture a louer : ", 1, 0, 'C', false);
-			$this->SetXY(40, 160);
+			$this->SetXY(10, 160);
 			$w = array(35, 35, 35, 35, 35);
 			for ($i = 0; $i < count($header); $i++) {
-				$this->SetX(40);
+				$this->SetX(10);
 				$this->Cell($w[$i], 12, $header[$i], 0, 1, 'C', true);
 			}
 			$this->SetFillColor(127, 122, 122);
-			$this->SetXY(42, 170);
+			$this->SetXY(12, 170);
 			$this->Cell(31, 0.1, '', 0, 0, 'C', true);
 
-			$this->SetXY(42, 182);
+			$this->SetXY(12, 182);
 			$this->Cell(31, 0.1, '', 0, 0, 'C', true);
 
-			$this->SetXY(42, 194);
+			$this->SetXY(12, 194);
 			$this->Cell(31, 0.1, '', 0, 0, 'C', true);
 
-			$this->SetXY(42, 206);
+			$this->SetXY(12, 206);
+			$this->Cell(31, 0.1, '', 0, 0, 'C', true);
+
+			$this->SetXY(12, 218);
 			$this->Cell(31, 0.1, '', 0, 0, 'C', true);
 
 			$this->SetFillColor(247, 243, 243);
-			$this->SetXY(86, 160);
-			$this->Cell(80, 12, "", 0, 1, 'C', true);
-			$this->SetX(86);
-			$this->Cell(80, 12, "", 0, 1, 'C', true);
-			$this->SetX(86);
-			$this->Cell(80, 12, "", 0, 1, 'C', true);
-			$this->SetX(86);
-			$this->Cell(80, 12, "", 0, 1, 'C', true);
+			$this->SetXY(56, 160);
+			$this->Cell(80, 12, $InfoCar['id'], 0, 1, 'C', true);
+			$this->SetX(56);
+			$this->Cell(80, 12, $InfoCar['type'], 0, 1, 'C', true);
+			$this->SetX(56);
+			$this->Cell(80, 12, $InfoCar['prix'] . " EUR", 0, 1, 'C', true);
+			$this->SetX(56);
+			$this->Cell(80, 12, $_SESSION['dates']['Debut'], 0, 1, 'C', true);
+			$this->SetX(56);
+			$this->Cell(80, 12, $_SESSION['dates']['Fin'], 0, 1, 'C', true);
 
 			$this->SetFillColor(127, 122, 122);
-			$this->SetXY(88, 170);
+			$this->SetXY(58, 170);
 			$this->Cell(76, 0.1, '', 0, 0, 'C', true);
 
-			$this->SetXY(88, 182);
+			$this->SetXY(58, 182);
 			$this->Cell(76, 0.1, '', 0, 0, 'C', true);
 
-			$this->SetXY(88, 194);
+			$this->SetXY(58, 194);
 			$this->Cell(76, 0.1, '', 0, 0, 'C', true);
 
-			$this->SetXY(88, 206);
+			$this->SetXY(58, 206);
 			$this->Cell(76, 0.1, '', 0, 0, 'C', true);
 
-			$this->SetXY(10, 216);
-			if(count($data)>10){
-				$this->Cell(array_sum($w), 10, 'Total a payer (avec reduction 10%)* : ', 'T'); //. $_SESSION['facture']['total'] / 10
+			$this->SetXY(58, 218);
+			$this->Cell(76, 0.1, '', 0, 0, 'C', true);
+
+
+			$this->Image($InfoCar['photo'], 145, 174, 50);
+			$this->SetXY(10, 225);
+			$this->SetTextColor(255, 0, 0);
+			if(count($InfoCar)>10){
+				$this->Cell(0, 10, 'TOTAL A PAYER (AVEC REDUCTION 10%)* :         ' . $_SESSION['facture']['valeur']*0.9 . ' EUR', 'T');
 			} else {
-			 	$this->Cell(array_sum($w), 10, 'Total a payer (sans reduction 10%)* : ', 'T'); //. $_SESSION['facture']['total']
+			 	$this->Cell(0, 10, 'TOTAL A PAYER (SANS REDUCTION 10%)* :         ' . $_SESSION['facture']['valeur'] . ' EUR', 1, 1, 'T');
 			}
 
 		}
@@ -253,15 +264,15 @@ function getBill()
 	$pdf = new PDF();
 	$pdf->AliasNbPages();
 	$pdf->AddPage();
-	$header = array('v.id :', 'type :', 'caract :', 'prix :');
+	$header = array('Identifiant :', 'Nom :', 'Prix/jour :', 'Date debut', 'Date fin');
 
 	require("./model/cars.php");
-	$Cars[] = description(1);
-	$Cars[] = description(2);
+	$InfoCar = getCarBD($_SESSION['cart']);
 	$info_to_fill = array('Identifiant :', 'Nom :', 'E-mail :', 'Entreprise :', 'Adresse :');
 	$user_info = $_SESSION['user_info'];
 	$pdf->EnterpriseInfos($info_to_fill, $user_info);
-	$pdf->RentedVehicule($header, $Cars);
+	$pdf->RentedVehicule($header, $InfoCar);
+	$pdf->SetTitle('FACTURE_PARISDESCARZ_' . $user_info['nom'] . '_' . $InfoCar['type']);
 	$pdf->Output();
 }
 
