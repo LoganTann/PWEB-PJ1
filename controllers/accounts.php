@@ -266,7 +266,7 @@ function getBill()
 	$header = array('Identifiant :', 'Nom :', 'Prix/jour :', 'Date debut', 'Date fin');
 
 	require("./model/cars.php");
-	$InfoCar = getCarBD($_SESSION['cart']);
+	$InfoCar = getCarBD($_GET['id']);
 	$info_to_fill = array('Identifiant :', 'Nom :', 'E-mail :', 'Entreprise :', 'Adresse :');
 	$user_info = $_SESSION['user_info'];
 	$pdf->EnterpriseInfos($info_to_fill, $user_info);
@@ -278,8 +278,8 @@ function getBill()
 function getRentalCars()
 {
 	require("model/cars.php");
-	$Cars = getRentalCarsBD($_SESSION['user_info']['id']);
-	require("views/home/getCars.php");
+	$Cars = getCarsBD($_SESSION['user_info']['id']);
+	require("views/home/getRentalCars.php");
 }
 
 function getNb()
