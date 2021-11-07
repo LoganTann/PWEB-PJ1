@@ -1,7 +1,11 @@
 <html lang="fr">
 <nav class="yellow darken-3" style="display: flex !important;">
+
+
     <?php echo $_SESSION['user_info']['nom'] ?>
     <a class="waves-effect waves-light btn btn-large modal-trigger" href="?page=accounts&action=getRentalCars">Gérer sa flotte</a>
+    <a class="waves-effect waves-light btn-large" href="?page=vehicle&action=getCars">Louer un véhicule</a>
+    <a class="waves-effect waves-light btn-large" href="?page=customer&action=factures"><i class="material-icons right">receipt</i>Voir vos factures</a>
     <a class="waves-effect waves-light btn btn-large modal-trigger" href="#modal1">Se déconnecter</a>
 </nav>
 

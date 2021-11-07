@@ -17,10 +17,15 @@ function description($id)
 	return $descriptif;
 }
 
+/**
+ * Retourne les infos de la voiture
+ * @param null $etatL
+ * @return array|mixed|void Les infos de la voiture
+ */
 function getCarsBD($etatL = null)
 {
 	require('model/connectBD.php');
-	$sql = "SELECT type, prix, photo, etatL, caract FROM vehicule";
+	$sql = "SELECT id, type, prix, photo, etatL, caract FROM vehicule";
 	if (!is_null($etatL)) {
 		$sql .= " WHERE etatL=:etatL";
 	}
@@ -38,6 +43,23 @@ function getCarsBD($etatL = null)
 		die(); // On arrête tout.
 	}
 	return [];
+}
+
+
+function getCarBD($id){
+    require('model/connectBD.php');
+    $sql = "SELECT id, type, prix, photo, etatL, caract FROM vehicule WHERE id=:id";
+    try {
+        $commande = $pdo->prepare($sql);
+        $commande->bindParam(':id',$id);
+        if ($commande->execute()){
+            return $commande->fetch();
+        }
+    } catch (PDOException $e) {
+        echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+        die(); // On arrête tout.
+    }
+    return [];
 }
 
 function getRentalCarsBD($idu)
@@ -78,4 +100,14 @@ function deleteCar($carId)
 	$req = $pdo->prepare($sql);
 	$req->bindParam(':id', $carId);
 	return $req->execute();
+}
+
+function changeState($state, $id)
+{
+    require('model/connectBD.php');
+    $sql = "UPDATE `vehicule` SET etatL = :state WHERE id = :id";
+    $req = $pdo->prepare($sql);
+    $req->bindParam(':state',$state);
+    $req->bindParam(':id',$id);
+    return $req->execute();
 }

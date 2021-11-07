@@ -32,7 +32,7 @@ function new_user($user_info) {
 		}
 	}
 	catch (PDOException $e) {
-		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+		echo utf8_encode("Echec de insert : " . $e->getMessage() . "\n");
 		die();
 	}
 	return -1;
