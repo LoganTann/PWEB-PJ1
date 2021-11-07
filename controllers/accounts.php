@@ -179,7 +179,7 @@ function getBill()
 			$this->SetFillColor(247, 243, 243);
 			$this->SetTextColor(127, 122, 122);
 			$this->SetLineWidth(.3);
-			$this->SetXY(84,145);
+			$this->SetXY(84, 145);
 			$this->Cell(40, 10, "Voiture a louer : ", 1, 0, 'C', false);
 			$this->SetXY(10, 160);
 			$w = array(35, 35, 35, 35, 35);
@@ -235,12 +235,11 @@ function getBill()
 			$this->Image($InfoCar['photo'], 145, 174, 50);
 			$this->SetXY(10, 225);
 			$this->SetTextColor(255, 0, 0);
-			if(count($InfoCar)>10){
-				$this->Cell(0, 10, 'TOTAL A PAYER (AVEC REDUCTION 10%)* :         ' . $_SESSION['facture']['valeur']*0.9 . ' EUR', 'T');
+			if (getNb() >= 10) {
+				$this->Cell(0, 10, 'TOTAL A PAYER (AVEC REDUCTION 10%)* :         ' . $_SESSION['facture']['valeur'] * 0.9 . ' EUR', 1, 1, 'T');
 			} else {
-			 	$this->Cell(0, 10, 'TOTAL A PAYER (SANS REDUCTION 10%)* :         ' . $_SESSION['facture']['valeur'] . ' EUR', 1, 1, 'T');
+				$this->Cell(0, 10, 'TOTAL A PAYER (SANS REDUCTION 10%)* :         ' . $_SESSION['facture']['valeur'] . ' EUR', 1, 1, 'T');
 			}
-
 		}
 
 		// Pied de page
@@ -276,16 +275,16 @@ function getBill()
 	$pdf->Output();
 }
 
-function getRentalCars(){
-    require ("model/cars.php");
-    $Cars = getRentalCarsBD($_SESSION['user_info']['id']);
-    require ("views/home/getCars.php");
+function getRentalCars()
+{
+	require("model/cars.php");
+	$Cars = getRentalCarsBD($_SESSION['user_info']['id']);
+	require("views/home/getCars.php");
 }
 
-function getNb(){
-	require ('./model/clientBD.php');
+function getNb()
+{
+	require('./model/clientBD.php');
 	$count = getNbCars($_SESSION['user_info']['id']);
 	return ($count['nb']);
 }
-
-?>
