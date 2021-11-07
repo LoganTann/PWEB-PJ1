@@ -15,4 +15,4 @@ catch (PDOException $e) {
 	die();
 }
 
-?>	
+?>

@@ -1,13 +1,12 @@
 <html lang="fr">
-
-<nav class="navbar navbar-dark bg-custom-2">
+<nav class="yellow darken-3" style="display: flex !important;">
     <a href="#" style="margin-left: 20px" class="brand-logo"><img class="img-format" src="views\home\logo.png"></img></a>
-    <ul class="right">
-        <li><?php echo $_SESSION['user_info']['nom'] ?></li>
-        <li><?php echo $_SESSION['user_info']['id'] ?></li>
-        <li><a class="waves-effect waves-light btn btn-large modal-trigger" href="?page=accounts&action=getBill">Télécharger votre facture</a></li>
-        <li><a class="waves-effect waves-light btn btn-large modal-trigger" href="#modal1">Se déconnecter</a></li>
-    </ul>
+
+    <?php echo $_SESSION['user_info']['nom'] ?>
+    <a class="waves-effect waves-light btn btn-large modal-trigger" href="?page=accounts&action=getRentalCars">Gérer sa flotte</a>
+    <a class="waves-effect waves-light btn-large" href="?page=vehicle&action=getCars">Louer un véhicule</a>
+    <a class="waves-effect waves-light btn-large" href="?page=accounts&action=getBill"><i class="material-icons right">receipt</i>Voir vos factures</a>
+    <a class="waves-effect waves-light btn btn-large modal-trigger" href="#modal1">Se déconnecter</a>
 </nav>
 
 <div id="modal1" class="modal" style="width: 33% !important;">
