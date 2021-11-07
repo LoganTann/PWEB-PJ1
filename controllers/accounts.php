@@ -223,40 +223,12 @@ function getBill()
 			$this->SetXY(88, 206);
 			$this->Cell(76, 0.1, '', 0, 0, 'C', true);
 
-			// // Couleurs, épaisseur du trait et police grasse
-			// $this->SetFillColor(255, 0, 0);
-			// $this->SetTextColor(255);
-			// $this->SetDrawColor(128, 0, 0);
-			// $this->SetLineWidth(.3);
-			// $this->SetFont('Times', 'B');
-			// $this->SetXY(10, 140);
-			// // En-tête
-			// $w = array(45, 45, 45, 45);
-			// for ($i = 0; $i < count($header); $i++) {
-			// 	$this->Cell($w[$i], 10, $header[$i], 1, 0, 'C', true);
-			// }
-			// $this->Ln();
-			// // Restauration des couleurs et de la police
-			// $this->SetFillColor(224, 235, 255);
-			// $this->SetTextColor(0);
-			// $this->SetFont('');
-			// // Données
-			// $fill = false;
-			// foreach ($data as $row) {
-			// 	$this->Cell($w[0], 12, "", 'LR', 0, 'L', $fill);
-			// 	$this->Cell($w[1], 12, "", 'LR', 0, 'L', $fill);
-			// 	$this->Cell($w[2], 12, "", 'LR', 0, 'R', $fill);
-			// 	$this->Cell($w[3], 12, "", 'LR', 0, 'R', $fill);
-			// 	$this->Ln();
-			// 	$fill = !$fill;
-			// }
-			// // Trait de terminaison
-			// $this->Cell(array_sum($w), 0, '', 0, 1, 'T');
-			// if(count($data)>10){
-			// 	$this->Cell(array_sum($w), 10, 'Total a payer (avec reduction 10%)* : ', 'T'); //. $_SESSION['facture']['total'] / 10
-			// } else {
-			// 	$this->Cell(array_sum($w), 10, 'Total a payer (sans reduction 10%)* : ', 'T'); //. $_SESSION['facture']['total']
-			// }
+			$this->SetXY(10, 216);
+			if(count($data)>10){
+				$this->Cell(array_sum($w), 10, 'Total a payer (avec reduction 10%)* : ', 'T'); //. $_SESSION['facture']['total'] / 10
+			} else {
+			 	$this->Cell(array_sum($w), 10, 'Total a payer (sans reduction 10%)* : ', 'T'); //. $_SESSION['facture']['total']
+			}
 
 		}
 
