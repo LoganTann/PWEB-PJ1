@@ -60,7 +60,7 @@ function rent(){
 
     if ($idfacture = creerFacture($facture_info) >=0){
         $_SESSION['facture']['id'] = $idfacture;
-        $nexturl = "index.php?page=customer&action=facture";
+        $nexturl = "index.php?page=accounts&action=getRentalCars";
         header ("Location:" . $nexturl);
         return;
     }

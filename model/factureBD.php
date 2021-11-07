@@ -21,3 +21,27 @@ function creerFacture($facture_info){
     }
     return -1;
 }
+
+function getFacture($idv,$ide){
+    require('model/connectBD.php');
+    $sql="SELECT * FROM `facture` WHERE idv=:idv AND ide=:ide";
+    try {
+        $commande = $pdo->prepare($sql);
+        $commande->bindParam(':idv', $idv);
+        $commande->bindParam(':ide', $ide);
+        $bool = $commande->execute();
+        if ($bool) {
+            $resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+        }
+    }
+    catch (PDOException $e) {
+        echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+        die();
+    }
+    if (count($resultat) == 0) {
+        return false;
+    }
+    else {
+        return $resultat[0];
+    }
+}

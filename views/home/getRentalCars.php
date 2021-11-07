@@ -63,7 +63,9 @@
         <?php if (isset($Cars)) { ?>
             <h2>Liste des voitures : </h2>
             <div class="row">
-                <?php foreach ($Cars as $car) : ?>
+                <?php
+                require("./model/factureBD.php");
+                foreach ($Cars as $car) : ?>
                     <div class="col s12 m3">
 
 
@@ -72,10 +74,17 @@
                             <div class=card-image>
                                 <?php
                                 echo ('<img src=' . $car['photo'] . '>');
-                                echo ('<a class="btn-floating halfway-fab waves-effect waves-light" href="?page=accounts&action=getBill&id=' . $car['id'] . '"><i class="material-icons">add</i></a>');
+                                echo ('<a class="btn-floating halfway-fab waves-effect waves-light" href="?page=accounts&action=getBill&id=' . $car['id'] . '"><i class="material-icons">receipt</i></a>');
                                 ?>
                             </div>
                             <div class="card-content">
+                                <div class="info-container">
+                                    <p>
+                                        <?php $infosFacture = getFacture($car['id'],$_SESSION['user_info']['id']); ?>
+                                        <?php echo('Vous avez reservé cette voiture du '.date('d/m/Y',strtotime($infosFacture['dateD'])).' au '.date('d/m/Y',strtotime($infosFacture['dateF']))) .'<br>';?>
+
+                                    </p>
+                                </div>
                                 <?php
                                 echo ('<span class="card-title">' . $car['type'] . ' ' . $car['prix'] . '€/heure' . '</span>');
                                 ?>

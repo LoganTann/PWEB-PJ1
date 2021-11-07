@@ -174,7 +174,7 @@ function getBill()
 			$this->Cell(76, 0.1, '', 0, 0, 'C', true);
 		}
 
-		function RentedVehicule($header, $InfoCar)
+		function RentedVehicule($header, $InfoCar, $InfoFacture)
 		{
 			$this->SetFillColor(247, 243, 243);
 			$this->SetTextColor(127, 122, 122);
@@ -211,9 +211,9 @@ function getBill()
 			$this->SetX(56);
 			$this->Cell(80, 12, $InfoCar['prix'] . " EUR", 0, 1, 'C', true);
 			$this->SetX(56);
-			$this->Cell(80, 12, $_SESSION['dates']['Debut'], 0, 1, 'C', true);
+			$this->Cell(80, 12, $InfoFacture['dateD'], 0, 1, 'C', true);
 			$this->SetX(56);
-			$this->Cell(80, 12, $_SESSION['dates']['Fin'], 0, 1, 'C', true);
+			$this->Cell(80, 12, $InfoFacture['dateF'], 0, 1, 'C', true);
 
 			$this->SetFillColor(127, 122, 122);
 			$this->SetXY(58, 170);
@@ -236,9 +236,9 @@ function getBill()
 			$this->SetXY(10, 225);
 			$this->SetTextColor(255, 0, 0);
 			if (getNb() >= 10) {
-				$this->Cell(0, 10, 'TOTAL A PAYER (AVEC REDUCTION 10%)* :         ' . $_SESSION['facture']['valeur'] * 0.9 . ' EUR', 1, 1, 'T');
+				$this->Cell(0, 10, 'TOTAL A PAYER (AVEC REDUCTION 10%)* :         ' . $InfoFacture['valeur'] * 0.9 . ' EUR', 1, 1, 'T');
 			} else {
-				$this->Cell(0, 10, 'TOTAL A PAYER (SANS REDUCTION 10%)* :         ' . $_SESSION['facture']['valeur'] . ' EUR', 1, 1, 'T');
+				$this->Cell(0, 10, 'TOTAL A PAYER (SANS REDUCTION 10%)* :         ' . $InfoFacture['valeur'] . ' EUR', 1, 1, 'T');
 			}
 		}
 
@@ -266,11 +266,15 @@ function getBill()
 	$header = array('Identifiant :', 'Nom :', 'Prix/jour :', 'Date debut', 'Date fin');
 
 	require("./model/cars.php");
+    require("./model/factureBD.php");
 	$InfoCar = getCarBD($_GET['id']);
+    $InfoFacture = getFacture($InfoCar['id'],$_SESSION['user_info']['id']);
+    $_SESSION['facture']['id'] = $InfoFacture['id'];
+    //var_dump($InfoFacture);
 	$info_to_fill = array('Identifiant :', 'Nom :', 'E-mail :', 'Entreprise :', 'Adresse :');
 	$user_info = $_SESSION['user_info'];
 	$pdf->EnterpriseInfos($info_to_fill, $user_info);
-	$pdf->RentedVehicule($header, $InfoCar);
+	$pdf->RentedVehicule($header, $InfoCar, $InfoFacture);
 	$pdf->SetTitle('FACTURE_PARISDESCARZ_' . $user_info['nom'] . '_' . $InfoCar['type']);
 	$pdf->Output();
 }
