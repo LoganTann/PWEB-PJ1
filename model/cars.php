@@ -101,3 +101,13 @@ function deleteCar($carId)
 	$req->bindParam(':id', $carId);
 	return $req->execute();
 }
+
+function changeState($state, $id)
+{
+    require('model/connectBD.php');
+    $sql = "UPDATE `vehicule` SET etatL = :state WHERE id = :id";
+    $req = $pdo->prepare($sql);
+    $req->bindParam(':state',$state);
+    $req->bindParam(':id',$id);
+    return $req->execute();
+}

@@ -87,7 +87,9 @@ else {
                         $d1 = strtotime($_SESSION['dates']['Debut']);
                         $d2 = strtotime($_SESSION['dates']['Fin']);
                         $interval = round(($d2 - $d1)/ (60 *60 *24));
-                        echo('Durée totale : '.round($interval )). ' jours pour un total de '.$interval*$car['prix'].' €'; ?>
+                        $prix = $interval*$car['prix'];
+                        $_SESSION['facture']['valeur'] = $prix;
+                        echo('Durée totale : '.round($interval )). ' jours pour un total de '.$prix.' €'; ?>
                     </p>
                 </div>
                 <?php
@@ -115,7 +117,9 @@ else {
                 </div>
 
             </div>
+
         </div>
+        <a href="?page=customer&action=rent" class="waves-effect waves-light btn-large">Confirmer</a>
     </div>
      </div>
 
