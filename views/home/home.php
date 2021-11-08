@@ -27,7 +27,7 @@ if (empty($_SESSION['loggedin'])) {
                         <?php require("./views/home/card.php"); ?>
                     </div>
                 <?php endforeach; ?>
-            </div>;
+            </div>
         <?php
         } else {
             echo 'Toutes nos voitures ont été réservées, désolé.';
