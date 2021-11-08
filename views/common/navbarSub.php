@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark bg-custom-2 navbarSub">
     <div class="nav-wrapper">
-        <a href="?" class="brand-logo left"><img class="img-format" src="./views/static/logo.png"></img></a>
+        <a href="?" class="brand-logo left"><img class="img-format" src="./views/static/logo.png"/></a>
         <ul id="nav-mobile" class="right">
             <li><a href="?page=accounts&action=getRentalCars">Gérer sa flotte</a></li>
             <li><a href="?page=vehicle&action=getCars">Louer un véhicule</a></li>

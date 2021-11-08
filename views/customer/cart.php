@@ -15,7 +15,7 @@ require "./views/common/navbarSub.php";
                 <div class="col s12 m6">
                     <ul class="collection">
                         <li class="collection-item avatar">
-                            <?php echo '<img src=' . $car['photo'] . ' alt="" class="circle">';
+                            <?php echo '<img src="' . $car['photo'] . '" alt="" class="circle">';
                             echo '<span class="title"><b>' . $car['type'] . '</b></span>'; ?>
                             <p><?php echo 'Tarif journalier : ' . $car['prix'] . '€'; ?> <br>
                                 Dates selectionnées :<br>

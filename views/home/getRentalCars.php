@@ -16,10 +16,10 @@ if (empty($_SESSION['loggedin'])) {
             require("./model/factureBD.php");
             foreach ($Cars as $car) : ?>
                 <div class="col s12 m6 xl4">
-                    <div class=card>
-                        <div class=card-image>
+                    <div class="card">
+                        <div class="card-image">
                             <?php
-                            echo ('<img src=' . $car['photo'] . '>');
+                            echo ('<img src="' . $car['photo'] . '">');
                             echo ('<a class="btn-floating halfway-fab waves-effect waves-light" href="?page=accounts&action=getBill&id=' . $car['id'] . '"><i class="material-icons">receipt</i></a>');
                             ?>
                         </div>
@@ -55,7 +55,6 @@ if (empty($_SESSION['loggedin'])) {
                             <div class="info-container">
                                 <svg class="icones" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M21,20V2H10v11H7c-0.6,0-1,0.5-1,1v3H4l0-7.6l4.7-4.7L7.3,3.3L2,8.6V13l0,5c0,0.5,0.4,1,1,1h4c0.5,0,1-0.5,1-1v-3h2v5H9v2   h13v-2H21z M19,10h-7V4h7V10z"></path>
-                                    </g>
                                 </svg>
                                 <?php
                                 echo json_decode($car['caract'])->typeEnergie;
