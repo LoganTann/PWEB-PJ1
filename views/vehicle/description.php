@@ -28,3 +28,10 @@ if (empty($_SESSION['loggedin'])) {
 <?php
 require './views/common/commonFoot.php';
 ?>
+
+<style>
+    .img-format{
+        margin-left: 10px;
+        width: 160px;
+    }
+</style>
