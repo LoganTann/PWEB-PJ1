@@ -1,65 +1,13 @@
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paris Descar-z</title>
-
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@materializecss/materialize@1.1.0-alpha/dist/css/materialize.min.css">
-
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/@materializecss/materialize@1.1.0-alpha/dist/js/materialize.min.js"></script>
-</head>
-<body>
-<style>
-    .card-image {
-        height: 400px;
-        /* Your height here */
-        display: flex;
-        align-items: center;
-    }
-
-    nav {
-        display: flex;
-        justify-content: right;
-    }
-
-    nav>a {
-        margin-top: 0.4em;
-        margin-left: 1em;
-    }
-
-    .icones {
-        width: 7%;
-        height: 7%;
-        margin-right: 2%;
-    }
-
-    .info-container {
-        display: flex;
-        align-items: center;
-    }
-</style>
 <?php
-if($_SESSION['loggedin'] == -1) {
-    header("Location : index.php");
+if (empty($_SESSION['loggedin'])) {
+    header("Location : index.php?page=accounts&action=connect&msg=shouldLogin");
+    exit;
 }
-else {
-    require("./views/common/navbarSub.php");
-}
+require './views/common/commonHead.php';
+require "./views/common/navbarSub.php";
 
 ?>
-<header class="container">
-    <h1>Récapitulatif de votre commande</h1>
-    <h3>Référence de l'API : </h3>
-    <p style="font-family: monospace;">/index.php<b>?page=</b>nomDuControlleur<b>&action=</b>nomDeFonction</p>
-</header>
-<main>
+<main class="container">
 
     <nav>
         <div class="nav-wrapper">
@@ -72,8 +20,8 @@ else {
 
     <div class="row">
     <div class="col s12 m3">
-        <div class=card>
-            <div class=card-image>
+        <div class="card">
+            <div class="card-image">
                 <?php
                 echo ('<img src=' . $car['photo'] . '>');
                 ?>

@@ -16,7 +16,7 @@ function create()
 		if (count($errors) <= 0 && ($id_user = new_user($user_info)) >= 0) {
 			$_SESSION['user_info'] = $user_info;
 			$_SESSION['user_info']['id'] = $id_user;
-			$_SESSION['loggedin'] = 0;
+			$_SESSION['loggedin'] = true;
 			$nexturl = "index.php?page=accounts&action=accueil";
 			header("Location:" . $nexturl);
 			return;
@@ -26,28 +26,40 @@ function create()
 	require("./views/accounts/create.php");
 }
 
-function accueil()
+function logout()
 {
-	require("views/home/home.php");
+	unset($_SESSION['loggedin']);
+	// redirect
+	header("Location: index.php?page=accounts&action=connect&msg=disconnected");
 }
 
 function connect()
 {
-	$_SESSION['successfulConnection'] = -1;
+	$boxColor = "red";
+	$boxMessage = "";
+	if (isset($_GET['msg'])) {
+		switch ($_GET['msg']) {
+			case "shouldLogin":
+				$boxColor = "orange";
+				$boxMessage = "Veuillez vous connecter au préalable pour accéder à cette page";
+				break;
+			case "disconnected":
+				$boxColor = "green";
+				$boxMessage = "Vous avez été déconnecté.";
+				break;
+		}
+	}
 	if (count($_POST) > 0) {
-		$user_info = array(
-			"pseudo" => $_POST["pseudo"],
-			"mdp" => $_POST["mdp"]
-		);
 		require("./model/clientBD.php");
-		if (verif_bd($user_info['pseudo'], $user_info['mdp'], $user_info)) {
+		if (empty($_POST["pseudo"]) || empty($_POST["mdp"])) {
+			$boxMessage = "Veuillez remplir tous les champs.";
+		} else if (verif_bd($_POST["pseudo"], $_POST["mdp"], $user_info)) {
 			$_SESSION['user_info'] = $user_info;
-			// $_SESSION['user_info']['id'] = $id_user;
-			$_SESSION['loggedin'] = 0;
-			unset($_SESSION['successfulConnection']);
-			$nexturl = "index.php?page=accounts&action=accueil";
-			header("Location:" . $nexturl);
+			$_SESSION['loggedin'] = true;
+			header("Location: index.php");
 			return;
+		} else {
+			$boxMessage = "identifiant ou mot de passe incorrect";
 		}
 	}
 	require("./views/accounts/connect.php");
@@ -99,7 +111,7 @@ function getBill()
 
 
 			// Logo
-			$this->Image('./views/home/logo.png', 15, 25, 50);
+			$this->Image('./views/static/logo.png', 15, 25, 50);
 
 			$this->SetXY(140, 25);
 

@@ -3,7 +3,7 @@ require './views/common/commonHead.php';
 ?>
 
 <?php
-if ($_SESSION['loggedin'] == -1) {
+if (empty($_SESSION['loggedin'])) {
     require("./views/common/navbarVisiteur.php");
 } else {
     require("./views/common/navbarSub.php");

@@ -1,10 +1,11 @@
 <?php
 
 function index() {
+    if (!isset($_SESSION['loggedin'])) {
+        $_SESSION['loggedin'] = false;
+        $_SESSION['cart'] = array();
+    }
     require ("model/cars.php");
     $Cars = getCarsBD();
-    unset($_SESSION['user_info']);
-    $_SESSION['cart'] = array();
-    $_SESSION['loggedin'] = -1;
     require("./views/home/home.php");
 }

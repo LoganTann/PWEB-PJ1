@@ -9,8 +9,8 @@ function index() {
     $data = [
         "connected" => false,
         "box-color" => "orange",
-        "box-message" => "Pour accéder à l'espace administration, une identification est (logiquement) nécessaire !<br>
-            Hint de mot de passe : c'est la pire prononciation de &laquo;json&raquo; !"
+        "box-message" => empty($_SESSION['adminConnected']) ? "Pour accéder à l'espace administration, une identification est (logiquement) nécessaire !<br>
+            Hint de mot de passe : c'est la pire prononciation de &laquo;json&raquo; !" : ""
     ];
     // Traitement du mot de passe, si envoyé
     if (isset($_POST['password'])) {
@@ -22,17 +22,32 @@ function index() {
             $data['box-message'] = 'Mot de passe incorrect. C\'était <span style="font-family: monospace">jizon</span>.';
         }
     }
-    // Passage à la vue d'une variable indiquant si l'admin est connecté
-    if (isset($_SESSION['adminConnected'])) {
-        $data['connected'] = true;
-    }
-    // Passage à la vue d'une variable indiquant si l'admin vient tout juste de se déconnecter
+    // passage d'une variable à la vue
     if (isset($_GET['customMsg'])) {
         if ($_GET['customMsg'] == 'logout_OK') {
             $data['box-color'] = "green";
             $data['box-message'] = 'Déconnection effectuée avec succès';
         }
     }
+    // passage d'une variable à la vue
+    if (isset($_SESSION['adminConnected'])) {
+        $data['connected'] = true;
+        // récupréation des voitures à afficher
+        require("model/cars.php");
+        $Cars = getCarsBD();
+
+        // gestion de l'évènement "supprimer une voiture".
+        if (isset($_POST["event_carRemove"])) {
+            require("./model/cars.php");
+            if (isset($_POST["carId"]) && deleteCar($_POST["carId"])) {
+                $data['box-color'] = "green";
+                $data['box-message'] = "Voiture ID='". $_POST["carId"]."' supprimée";
+            } else {
+                $data['box-color'] = "red";
+                $data['box-message'] = "Erreur interne lors de la suppression";
+            }
+        }
+    }    
     require("./views/admin/dashboard.php");
 }
 
@@ -79,12 +94,6 @@ function manageCar() {
         } else {
             $data["msgs"][] = "Echec... Avez-vous spécifié une image ?";
         }
-    }
-    if (isset($_POST["event_carRemove"])) {
-        $carId = $_POST["carId"];
-        deleteCar($carId);
-        $data["msgs"][] = "Voiture ID='$carId' supprimée";
-        $data["boxGreen"] = true;
     }
     require("./views/admin/manageCar.php");
 }

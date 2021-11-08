@@ -1,11 +1,28 @@
-<div class=card>
-    <div class=card-image>
+<div class="card">
+    <div class="card-image">
         <a href="?page=vehicle&action=afficher_description&id=<?= $car['id'] ?>">
             <div class="imageBG" <?= "style='background-image: url(" . $car['photo'] . ");'" ?>></div>
         </a>
+        <div class="">
+            <?php
+            if (!empty($_SESSION['loggedin'])) {
+                echo '<a class="btn-floating halfway-fab waves-effect waves-light" href="?page=customer&action=addToCart&id=', $car['id'], '"><i class="material-icons">add</i></a>';
+            }
+            // right: 80
+            else if (!empty($_SESSION['adminConnected'])) {
+            ?>
+                <form action="?page=admin&action=index" method="post">
+                    <button type="submit" name="event_carRemove" class="btn-floating halfway-fab waves-effect waves-light"><i class="material-icons">delete</i></button>
+                    <input type="hidden" name="carId" value="<?= $car['id'] ?>">
+                </form>
+            <?php
+            }
+            ?>
+        </div>
     </div>
     <div class="card-content">
         <?php
+
         echo ('<span class="card-title">' . $car['type'] . ' ' . $car['prix'] . '€/heure' . '</span>');
         ?>
         <div class="info-container">

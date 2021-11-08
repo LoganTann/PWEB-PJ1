@@ -5,6 +5,13 @@ require "./views/common/navbarVisiteur.php";
 
 <main class="container">
     <h3>Accédez dès maintenant à votre espace entreprise</h3>
+
+    <?php if (isset($boxMessage) && $boxMessage !== "") : ?>
+        <div class="card-panel <?= $boxColor ?> lighten-1">
+            <?= $boxMessage ?>
+        </div>
+    <?php endif; ?>
+
     <div class="login">
         <div class="form yellow darken-3">
             <form class="login-form" action="index.php?page=accounts&action=connect" method="post">
@@ -14,12 +21,8 @@ require "./views/common/navbarVisiteur.php";
                 <button class="waves-effect" type="submit">connexion</button>
             </form>
             <p>Vous n'avez-pas de compte ?
-                <a href="?page=accounts&action=create" style="font-size: 14px">Inscrivez-vous !</a></p>
-            <?php
-            if (isset($_SESSION['successfulConnection']) && isset($_POST['pseudo'])  && isset($_POST['mdp']) && $_SESSION['successfulConnection'] == -1) {
-                echo ("<p style='color: red'>Pseudo ou mot de passe incorrect</p>");
-            }
-            ?>
+                <a href="?page=accounts&action=create" style="font-size: 14px">Inscrivez-vous !</a>
+            </p>
         </div>
     </div>
 </main>

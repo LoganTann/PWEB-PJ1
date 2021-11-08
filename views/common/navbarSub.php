@@ -15,7 +15,7 @@
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-close orange btn-flat white-text">Annuler</a>
-        <a href="?page=home&action=index" class="modal-close green lighten1 btn-flat white-text">Déconnexion</a>
+        <a href="?page=accounts&action=logout" class="modal-close green lighten1 btn-flat white-text">Déconnexion</a>
     </div>
 </div>
 
@@ -23,6 +23,5 @@
     document.addEventListener('DOMContentLoaded', function() {
         var elems = document.querySelectorAll('.modal');
         var instances = M.Modal.init(elems, {});
-        console.log("aaa");
     });
 </script>

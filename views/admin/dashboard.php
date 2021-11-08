@@ -3,11 +3,13 @@ require './views/common/commonHead.php';
 require './views/admin/navbarAdmin.php';
 ?>
 <div class="container">
-    <?php if (empty($data['connected'])) : ?>
-
+    <?php if (!empty($data['box-message'])): ?>
         <div class="card-panel <?= $data['box-color'] ?> lighten-1">
             <?= $data['box-message']; ?>
         </div>
+    <?php endif; ?>
+
+    <?php if (empty($data['connected'])) : ?>
 
         <form action="?page=admin&action=index" method="post">
             <div class="row">
@@ -44,18 +46,10 @@ require './views/admin/navbarAdmin.php';
 
 
         <h3>Liste des voitures</h3>
-
-        <ul>
-            <li><a href="?page=vehicle&action=getCars">Voitures non louées</a></li>
-            <li><a href="?page=vehicle&action=getRentalCars">Voitures louées</a></li>
-        </ul>
-
-        <h3>Supprimer une voiture</h3>
-
-        <form action="?page=admin&action=manageCar" method="POST">
-            <input type="number" name="carId" />
-            <input type="submit" name="event_carRemove" />
-        </form>
+        <?php
+            $noNavbar = true;
+            require './views/home/getCars.php';
+        ?>
 
     <?php endif; ?>
 </div>

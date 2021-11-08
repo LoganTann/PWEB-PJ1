@@ -10,7 +10,6 @@ function addToCart(){
     $Cars = getCarsBD('disponible');
     $car = getCarBD($_SESSION['cart']);
     //echo "ici";
-    require('./views/customer/cart.php');
     if(count($_POST) > 0){
         $dates = array(
             "Debut" => $_POST['DateD'],
@@ -27,6 +26,7 @@ function addToCart(){
         }
         // require('./views/customer/cart.php');
     }
+    require('./views/customer/cart.php');
 }
 
 function recap(){
