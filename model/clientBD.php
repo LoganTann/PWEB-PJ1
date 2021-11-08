@@ -40,11 +40,11 @@ function new_user($user_info) {
 
 function verif_bd($pseudo,$mdp,&$user_info) {
 	require('model/connectBD.php');
-	$sql="SELECT * FROM `client` WHERE pseudo=:pseudo AND mdp=:mdp";
+	$sql="SELECT * FROM `client` WHERE pseudo=:pseudo";
 	try {
 		$commande = $pdo->prepare($sql);
 		$commande->bindParam(':pseudo', $pseudo);
-		$commande->bindParam(':mdp', $mdp);
+		// $commande->bindParam(':mdp', $mdp);
 		$bool = $commande->execute();
 		if ($bool) {
 			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
@@ -59,8 +59,11 @@ function verif_bd($pseudo,$mdp,&$user_info) {
 		return false; 
 	}
 	else {
+        if(password_verify($mdp,$resultat[0]['mdp'])) {
 		$user_info = $resultat[0];
-        return true;
+        return true;} else {
+            return false;
+        }
 	}
 }
 

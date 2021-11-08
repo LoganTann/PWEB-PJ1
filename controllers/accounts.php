@@ -6,7 +6,7 @@ function create()
 		$user_info = array(
 			"nom" => $_POST["nom"],
 			"pseudo" => $_POST["pseudo"],
-			"mdp" => $_POST["mdp"],
+			"mdp" => password_hash($_POST["mdp"], PASSWORD_DEFAULT),
 			"email" => $_POST["email"],
 			"nomE" => $_POST["nomE"],
 			"adresseE" => $_POST["adresseE"]
@@ -17,7 +17,7 @@ function create()
 			$_SESSION['user_info'] = $user_info;
 			$_SESSION['user_info']['id'] = $id_user;
 			$_SESSION['loggedin'] = true;
-			$nexturl = "index.php?page=accounts&action=accueil";
+			$nexturl = "index.php";
 			header("Location:" . $nexturl);
 			return;
 		}
