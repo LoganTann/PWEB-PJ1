@@ -53,6 +53,21 @@ function connect()
 	require("./views/accounts/connect.php");
 }
 
+function getRentalCars()
+{
+	require("model/cars.php");
+	$Cars = getCarsBD($_SESSION['user_info']['id']);
+	require("views/home/getRentalCars.php");
+}
+
+function getNb()
+{
+	require('./model/clientBD.php');
+	$count = getNbCars($_SESSION['user_info']['id']);
+	return ($count['nb']);
+}
+
+
 function getBill()
 {
 	require('./FPDF/fpdf.php');
@@ -277,18 +292,4 @@ function getBill()
 	$pdf->RentedVehicule($header, $InfoCar, $InfoFacture);
 	$pdf->SetTitle('FACTURE_PARISDESCARZ_' . $user_info['nom'] . '_' . $InfoCar['type']);
 	$pdf->Output();
-}
-
-function getRentalCars()
-{
-	require("model/cars.php");
-	$Cars = getCarsBD($_SESSION['user_info']['id']);
-	require("views/home/getRentalCars.php");
-}
-
-function getNb()
-{
-	require('./model/clientBD.php');
-	$count = getNbCars($_SESSION['user_info']['id']);
-	return ($count['nb']);
 }

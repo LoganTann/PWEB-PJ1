@@ -13,12 +13,15 @@
 
 /* Navbar visiteur */
 
-.navbarVisiteur .brand-logo, .navbarVisiteur .brand-logo img {
+.navbar .brand-logo, .navbar .brand-logo img {
     height: 100%;
 }
 
 .bg-custom-1 {
-    background-color: #85144b;
+    background-color: #71b36b;
+}
+.bg-custom-1 .brand-logo {
+    display: flex;
 }
 
 .bg-custom-2 {

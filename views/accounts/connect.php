@@ -1,6 +1,6 @@
 <?php
 require "./views/common/commonHead.php";
-require "./views/home/navbarVisiteur.php";
+require "./views/common/navbarVisiteur.php";
 ?>
 
 <main class="container">

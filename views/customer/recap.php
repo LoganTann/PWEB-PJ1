@@ -50,7 +50,7 @@ if($_SESSION['loggedin'] == -1) {
     header("Location : index.php");
 }
 else {
-    require("./views/home/navbarSub.php");
+    require("./views/common/navbarSub.php");
 }
 
 ?>

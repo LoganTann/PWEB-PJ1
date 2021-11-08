@@ -4,9 +4,9 @@ require './views/common/commonHead.php';
 
 <?php
 if ($_SESSION['loggedin'] == -1) {
-    require("./views/home/navbarVisiteur.php");
+    require("./views/common/navbarVisiteur.php");
 } else {
-    require("./views/home/navbarSub.php");
+    require("./views/common/navbarSub.php");
 }
 
 ?>

@@ -1,8 +1,5 @@
 <div class=card>
     <div class=card-image>
-        <?php
-        //echo ('<img src=' . $car['photo'] . '>');
-        ?>
         <a href="?page=vehicle&action=afficher_description&id=<?= $car['id'] ?>">
             <div class="imageBG" <?= "style='background-image: url(" . $car['photo'] . ");'" ?>></div>
         </a>

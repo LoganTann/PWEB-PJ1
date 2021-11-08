@@ -10,7 +10,7 @@ function index() {
         "connected" => false,
         "box-color" => "orange",
         "box-message" => "Pour accéder à l'espace administration, une identification est (logiquement) nécessaire !<br>
-            Hint de mot de passe : c'est la pire prononciation de &laquo;jzon&raquo; !"
+            Hint de mot de passe : c'est la pire prononciation de &laquo;json&raquo; !"
     ];
     // Traitement du mot de passe, si envoyé
     if (isset($_POST['password'])) {
@@ -33,8 +33,7 @@ function index() {
             $data['box-message'] = 'Déconnection effectuée avec succès';
         }
     }
-    // Appel de la vue avec un header & footer commun en plus
-    utils_getView('dashboard', $data);
+    require("./views/admin/dashboard.php");
 }
 
 /**
@@ -87,20 +86,5 @@ function manageCar() {
         $data["msgs"][] = "Voiture ID='$carId' supprimée";
         $data["boxGreen"] = true;
     }
-
-    utils_getView("manageCar", $data);
+    require("./views/admin/manageCar.php");
 }
-
-
-/**
- * Fonction __utilitaire__ qui affiche une vue.
- */
-function utils_getView($vueName, $data) {
-    require("./views/common/commonHead.php");
-    require("./views/admin/$vueName.php");
-    require("./views/common/commonFoot.php");
-}
-
-function facture() {
-}
-
