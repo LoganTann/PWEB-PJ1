@@ -17,13 +17,12 @@ function create()
 			$_SESSION['user_info'] = $user_info;
 			$_SESSION['user_info']['id'] = $id_user;
 			$_SESSION['loggedin'] = true;
-			$nexturl = "index.php";
-			header("Location:" . $nexturl);
+			header("Location: index.php");
 			return;
 		}
 		$errors[] = "Echec de l'inscription. Si aucune autre erreur n'est affichée, c'est probablement une erreur de la base de données.";
 	}
-	require("./views/accounts/create.php");
+	require("./views/accounts/create.tpl");
 }
 
 function logout()
@@ -62,14 +61,14 @@ function connect()
 			$boxMessage = "identifiant ou mot de passe incorrect";
 		}
 	}
-	require("./views/accounts/connect.php");
+	require "./views/accounts/connect.tpl";
 }
 
 function getRentalCars()
 {
 	require("model/cars.php");
 	$Cars = getCarsBD($_SESSION['user_info']['id']);
-	require("views/home/getRentalCars.php");
+	require "views/home/getRentalCars.tpl";
 }
 
 function getNb()

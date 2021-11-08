@@ -3,7 +3,6 @@
 /**
  * Page d'accueil d'administration.
  * Route : ?page=admin&action=index
- * @see /views/admin/index.php
  */
 function index() {
     $data = [
@@ -48,7 +47,7 @@ function index() {
             }
         }
     }    
-    require("./views/admin/dashboard.php");
+    require("./views/admin/dashboard.tpl");
 }
 
 /**
@@ -95,5 +94,5 @@ function manageCar() {
             $data["msgs"][] = "Echec... Avez-vous spécifié une image ?";
         }
     }
-    require("./views/admin/manageCar.php");
+    require("./views/admin/manageCar.tpl");
 }

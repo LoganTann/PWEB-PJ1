@@ -3,9 +3,9 @@
 if (empty($noNavbar)) {
     require './views/common/commonHead.tpl';
     if (empty($_SESSION['loggedin'])) {
-        require("./views/common/navbarVisiteur.php");
+        require("./views/common/navbarVisiteur.tpl");
     } else {
-        require("./views/common/navbarSub.php");
+        require("./views/common/navbarSub.tpl");
     }
 }
 
@@ -17,7 +17,7 @@ if (empty($noNavbar)) {
         <div class="row">
             <?php foreach ($Cars as $car) : ?>
                 <div class="col s12 m6 xl4">
-                    <?php require("./views/home/card.php"); ?>
+                    <?php require("./views/home/card.tpl"); ?>
                 </div>
             <?php endforeach; ?>
         </div>

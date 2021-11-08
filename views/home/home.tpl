@@ -4,9 +4,9 @@ require './views/common/commonHead.tpl';
 
 <?php
 if (empty($_SESSION['loggedin'])) {
-    require("./views/common/navbarVisiteur.php");
+    require("./views/common/navbarVisiteur.tpl");
 } else {
-    require("./views/common/navbarSub.php");
+    require("./views/common/navbarSub.tpl");
 }
 
 ?>
@@ -24,7 +24,7 @@ if (empty($_SESSION['loggedin'])) {
             <div class="row">
                 <?php foreach ($Cars as $car) : ?>
                     <div class="col s12 m6 xl4">
-                        <?php require("./views/home/card.php"); ?>
+                        <?php require("./views/home/card.tpl"); ?>
                     </div>
                 <?php endforeach; ?>
             </div>

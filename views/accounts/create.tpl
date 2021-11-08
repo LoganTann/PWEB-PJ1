@@ -1,6 +1,6 @@
 <?php
-require "./views/common/commonHead.php";
-require "./views/common/navbarVisiteur.php";
+require "./views/common/commonHead.tpl";
+require "./views/common/navbarVisiteur.tpl";
 ?>
 
 <main class="container">
@@ -59,5 +59,5 @@ require "./views/common/navbarVisiteur.php";
     </div>
 </main>
 <?php
-require "./views/common/commonFoot.php";
+require "./views/common/commonFoot.tpl";
 ?>

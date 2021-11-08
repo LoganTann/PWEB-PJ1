@@ -24,15 +24,14 @@ function addToCart(){
             $nexturl = "index.php?page=customer&action=recap";
             header ("Location:" . $nexturl);
         }
-        // require('./views/customer/cart.php');
     }
-    require('./views/customer/cart.php');
+    require('./views/customer/cart.tpl');
 }
 
 function recap(){
     require("./model/cars.php");
     $car = getCarBD($_SESSION['cart']);
-    require('./views/customer/recap.php');
+    require('./views/customer/recap.tpl');
 }
 
 function checkDates(&$dates){
@@ -64,5 +63,5 @@ function rent(){
         header ("Location:" . $nexturl);
         return;
     }
-    require ('./views/customer/cart.php');
+    require ('./views/customer/cart.tpl');
 }

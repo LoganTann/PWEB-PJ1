@@ -1,9 +1,9 @@
 <?php
 require './views/common/commonHead.tpl';
 if (empty($_SESSION['loggedin'])) {
-    require("./views/common/navbarVisiteur.php");
+    require("./views/common/navbarVisiteur.tpl");
 } else {
-    require("./views/common/navbarSub.php");
+    require("./views/common/navbarSub.tpl");
 }
 
 ?>

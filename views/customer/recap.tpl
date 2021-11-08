@@ -4,7 +4,7 @@ if (empty($_SESSION['loggedin'])) {
     exit;
 }
 require './views/common/commonHead.tpl';
-require "./views/common/navbarSub.php";
+require "./views/common/navbarSub.tpl";
 
 ?>
 <main class="container">
