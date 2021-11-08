@@ -1,7 +1,7 @@
 <?php
 
 if (empty($noNavbar)) {
-    require './views/common/commonHead.php';
+    require './views/common/commonHead.tpl';
     if (empty($_SESSION['loggedin'])) {
         require("./views/common/navbarVisiteur.php");
     } else {
@@ -26,5 +26,5 @@ if (empty($noNavbar)) {
     <?php } ?>
 </main>
 <?php
-require './views/common/commonFoot.php';
+require './views/common/commonFoot.tpl';
 ?>

@@ -3,7 +3,7 @@ if (empty($_SESSION['loggedin'])) {
     header("Location : index.php?page=accounts&action=connect&msg=shouldLogin");
     exit;
 }
-require './views/common/commonHead.php';
+require './views/common/commonHead.tpl';
 require "./views/common/navbarSub.php";
 
 ?>

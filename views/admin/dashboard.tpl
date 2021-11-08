@@ -1,6 +1,6 @@
 <?php
-require './views/common/commonHead.php';
-require './views/admin/navbarAdmin.php';
+require './views/common/commonHead.tpl';
+require './views/admin/navbarAdmin.tpl';
 ?>
 
 
@@ -19,7 +19,7 @@ require './views/admin/navbarAdmin.php';
         <?php
             $noNavbar = true;
             // getCars inclus aussi le footer
-            require './views/home/getCars.php';
+            require './views/home/getCars.tpl';
         ?>
     <?php } else { ?>
         <div class="container">
@@ -45,6 +45,6 @@ require './views/admin/navbarAdmin.php';
             </form>
         </div>
     <?php
-            require './views/common/commonFoot.php';
+            require './views/common/commonFoot.tpl';
         }
     ?>

@@ -1,6 +1,6 @@
 <?php
-require './views/common/commonHead.php';
-require './views/admin/navbarAdmin.php';
+require './views/common/commonHead.tpl';
+require './views/admin/navbarAdmin.tpl';
 ?>
 
 <div class="container">
@@ -88,5 +88,5 @@ require './views/admin/navbarAdmin.php';
     </script>
 </div>
 <?php
-require './views/common/commonFoot.php';
+require './views/common/commonFoot.tpl';
 ?>

@@ -1,5 +1,5 @@
 <?php
-require './views/common/commonHead.php';
+require './views/common/commonHead.tpl';
 if (empty($_SESSION['loggedin'])) {
     require("./views/common/navbarVisiteur.php");
 } else {
@@ -73,4 +73,4 @@ if (empty($_SESSION['loggedin'])) {
     <?php } ?>
 </main>
 
-<?php include './views/common/commonFoot.php'; ?>
+<?php include './views/common/commonFoot.tpl'; ?>

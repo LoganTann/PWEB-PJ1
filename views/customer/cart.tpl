@@ -4,7 +4,7 @@ if (empty($_SESSION['loggedin'])) {
     exit;
 }
 
-require './views/common/commonHead.php';
+require './views/common/commonHead.tpl';
 require "./views/common/navbarSub.php";
 
 ?>
@@ -46,5 +46,5 @@ require "./views/common/navbarSub.php";
     </script>
 </main>
 <?php
-require './views/common/commonFoot.php';
+require './views/common/commonFoot.tpl';
 ?>

@@ -1,5 +1,5 @@
 <?php
-require './views/common/commonHead.php';
+require './views/common/commonHead.tpl';
 ?>
 
 <?php
@@ -68,5 +68,5 @@ if (empty($_SESSION['loggedin'])) {
 </style>
 
 <?php
-require './views/common/commonFoot.php';
+require './views/common/commonFoot.tpl';
 ?>
