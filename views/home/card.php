@@ -1,8 +1,6 @@
 <div class="card">
     <div class="card-image">
-        <a href="?page=vehicle&action=afficher_description&id=<?= $car['id'] ?>">
-            <div class="imageBG" <?= "style='background-image: url(" . $car['photo'] . ");'" ?>></div>
-        </a>
+        <div class="imageBG" <?= "style='background-image: url(" . $car['photo'] . ");'" ?>></div>
         <div class="">
             <?php
             if (!empty($_SESSION['loggedin'])) {
