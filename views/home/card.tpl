@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-image">
-        <div class="imageBG" <?= "style='background-image: url(" . $car['photo'] . ");'" ?>></div>
+        <div class="imageBG" <?= "style='background-image: url(\"" . $car['photo'] . "\");'" ?>></div>
         <div class="">
             <?php
             if (!empty($_SESSION['loggedin'])) {
