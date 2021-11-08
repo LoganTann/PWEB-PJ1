@@ -17,6 +17,7 @@ function index() {
         $password_hashed = '$2y$10$xLI4nqFTEzLvmlW9xS5jWeYVWZxVpORPqjUSVA.DBQ/3/1fMW65GG';
         if (password_verify($_POST['password'], $password_hashed)) {
             $_SESSION['adminConnected'] = true;
+            $_SESSION['loggedin'] = false;
         } else {
             $data['box-color'] = "red";
             $data['box-message'] = 'Mot de passe incorrect. C\'était <span style="font-family: monospace">jizon</span>.';
@@ -38,7 +39,6 @@ function index() {
 
         // gestion de l'évènement "supprimer une voiture".
         if (isset($_POST["event_carRemove"])) {
-            require("./model/cars.php");
             if (isset($_POST["carId"]) && deleteCar($_POST["carId"])) {
                 $data['box-color'] = "green";
                 $data['box-message'] = "Voiture ID='". $_POST["carId"]."' supprimée";

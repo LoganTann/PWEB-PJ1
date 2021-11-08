@@ -21,7 +21,7 @@
     <div class="card-content">
         <?php
 
-        echo ('<span class="card-title">' . $car['type'] . ' ' . $car['prix'] . '€/heure' . '</span>');
+        echo ('<span class="card-title">' . $car['type'] . ' ' . $car['prix'] . '€/jour' . '</span>');
         ?>
         <div class="info-container">
             <svg class="icones" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
