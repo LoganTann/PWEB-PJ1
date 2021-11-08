@@ -1,84 +1,72 @@
-<html lang="fr">
+<?php
+require './views/common/commonHead.php';
+?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paris Descar-z</title>
+<?php
+if ($_SESSION['loggedin'] == -1) {
+    require("./views/home/navbarVisiteur.php");
+} else {
+    require("./views/home/navbarSub.php");
+}
 
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@materializecss/materialize@1.1.0-alpha/dist/css/materialize.min.css">
+?>
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/@materializecss/materialize@1.1.0-alpha/dist/js/materialize.min.js"></script>
+<header class="container homeHead white-text">
+    <h3><b>Bienvenue sur Paris Descar-z</b></h3>
+    <h4>Votre plateforme Business To Business parisienne de location</h4>
+</header>
 
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
-
-<body>
-    <style>
-        .card-image {
-            height: 400px;
-            /* Your height here */
-            display: flex;
-            align-items: center;
-        }
-
-        nav {
-            display: flex;
-            justify-content: right;
-        }
-
-        nav>a {
-            margin-top: 0.4em;
-            margin-left: 1em;
-        }
-
-        .icones {
-            width: 7%;
-            height: 7%;
-            margin-right: 2%;
-        }
-
-        .info-container {
-            display: flex;
-            align-items: center;
-        }
-    </style>
-     <?php
-        if($_SESSION['loggedin'] == -1) {
-            require("./views/home/navbarVisiteur.php");
-        }
-        else {
-            require("./views/home/navbarSub.php");
-        }
-        
-     ?>
-    <header class="container">
-        <h3>Référence de l'API : </h3>
-        <p style="font-family: monospace;">/index.php<b>?page=</b>nomDuControlleur<b>&action=</b>nomDeFonction</p>
-    </header>
-    <main>
+<main class="white homeMain">
+    <div class="container">
         <?php if (isset($Cars)) { ?>
-            <h2>Liste de nos véhicules : </h2>
-            <a href="?page=vehicle&action=getCars" class="waves-effect waves-light btn-small">Voir les voitures disponibles</a>
+            <h4>Notre catalogue : </h4>
+            <p class="taller"><a href="?page=vehicle&action=getCars" class="yellow-text text-darken-2">Consulter uniquement les voitures disponibles</a></p>
             <div class="row">
-            <?php foreach ($Cars as $car): ?>
-                <div class="col s12 m3">
-                    <?php require("./views/home/card.php"); ?>
-                </div>
-            <?php endforeach; ?>
+                <?php foreach ($Cars as $car) : ?>
+                    <div class="col s12 m6 xl4">
+                        <?php require("./views/home/card.php"); ?>
+                    </div>
+                <?php endforeach; ?>
             </div>;
         <?php
         } else {
-            echo 'pas de voitures dispo';
+            echo 'Toutes nos voitures ont été réservées, désolé.';
         }
         ?>
-    </main>
-    <footer>
-        <p>© 2021 - pweb</p>
-    </footer>
-</body>
+    </div>
+</main>
 
-</html>
+<style>
+    /* style propre à la page d'accueil */
+
+    body {
+        background-image: url("./views/static/background.png");
+        background-size: contain;
+    }
+
+    footer {
+        background: white;
+    }
+
+    nav.bg-custom-2 {
+        background: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    @media screen and (max-width: 800px) {
+        body {
+            background-size: auto 100vh;
+            background-position: center 0;
+        }
+
+        .homeHead {
+            height: 70%;
+            aspect-ratio: initial;
+        }
+    }
+</style>
+
+<?php
+require './views/common/commonFoot.php';
+?>

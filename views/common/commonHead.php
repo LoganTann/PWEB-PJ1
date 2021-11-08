@@ -11,21 +11,7 @@
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-
+    <link rel="stylesheet" href="./views/static/commonStyle.css">
 </head>
 <body>
-    <style>
-        nav {
-            display: flex;
-            justify-content: right;
-        }
-        nav>a {
-            margin-left: 1em;
-        }
-    </style>
-    <nav class="yellow darken-3">
-        <a href="?page=accounts&action=create" class="btn btn-large">S'inscrire</a>
-        <a href="?page=accounts&action=connect" class="btn btn-large">Se connecter</a>
-    </nav>
-    <main>
-        <!-- END common Head -->
+    <!-- END common Head -->
