@@ -46,5 +46,5 @@ require "./views/common/navbarSub.php";
     </script>
 </main>
 <?php
-require './views/common/commonFooter.php';
+require './views/common/commonFoot.php';
 ?>
